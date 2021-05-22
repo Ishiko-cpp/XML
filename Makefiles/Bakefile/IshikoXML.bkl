@@ -1,9 +1,9 @@
 toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../GNUmakefile/GNUmakefile;
-vs2017.solutionfile = ../VC15/IshikoErrors.sln;
-vs2015.solutionfile = ../VC14/IshikoErrors.sln;
-vs2013.solutionfile = ../VC12/IshikoErrors.sln;
+vs2017.solutionfile = ../VC15/IshikoXML.sln;
+vs2015.solutionfile = ../VC14/IshikoXML.sln;
+vs2013.solutionfile = ../VC12/IshikoXML.sln;
 
 library IshikoXML
 {
