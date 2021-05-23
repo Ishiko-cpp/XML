@@ -22,11 +22,13 @@ program IshikoXMLTests : IshikoXML, IshikoTestFrameworkCore
     headers
     {
         ../../Source/DocumentTests.h
+        ../../Source/ElementTests.h
     }
 
     sources
     {
         ../../Source/main.cpp
         ../../Source/DocumentTests.cpp
+        ../../Source/ElementTests.cpp
     }
 }

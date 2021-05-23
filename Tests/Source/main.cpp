@@ -5,6 +5,7 @@
 */
 
 #include "DocumentTests.h"
+#include "ElementTests.h"
 #include "Ishiko/XML/linkoptions.h"
 #include <Ishiko/TestFramework/TestFrameworkCore.h>
 
@@ -18,6 +19,7 @@ int main(int argc, char* argv[])
     theTestHarness.environment().setReferenceDataDirectory("../../ReferenceData");
 
     TestSequence& theTests = theTestHarness.tests();
+    theTests.append<ElementTests>();
     theTests.append<DocumentTests>();
     
     return theTestHarness.run();
