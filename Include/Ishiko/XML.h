@@ -9,10 +9,6 @@
 
 #include "XML/Document.h"
 
-#ifdef _DEBUG
-#pragma comment(lib, "IshikoXML-d.lib")
-#else
-#pragma comment(lib, "IshikoXML.lib")
-#endif
+#include "XML/linkoptions.h"
 
 #endif

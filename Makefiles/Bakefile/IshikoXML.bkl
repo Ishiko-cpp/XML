@@ -1,3 +1,8 @@
+ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
+import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/Boost.bkl;
+import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/pugixml.bkl;
+
 toolsets = gnu vs2017 vs2015 vs2013;
 
 gnu.makefile = ../GNUmakefile/GNUmakefile;
@@ -5,7 +10,7 @@ vs2017.solutionfile = ../VC15/IshikoXML.sln;
 vs2015.solutionfile = ../VC14/IshikoXML.sln;
 vs2013.solutionfile = ../VC12/IshikoXML.sln;
 
-library IshikoXML
+library IshikoXML : IshikoErrors, pugixml, Boost
 {
     archs = x86 x86_64;
 
@@ -32,6 +37,7 @@ library IshikoXML
         ../../Include/Ishiko/XML.h
 
         ../../Include/Ishiko/XML/Document.h
+        ../../Include/Ishiko/XML/linkoptions.h
     }
 
     sources
