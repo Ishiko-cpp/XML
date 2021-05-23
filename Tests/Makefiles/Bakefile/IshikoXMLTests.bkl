@@ -20,12 +20,12 @@ program IshikoXMLTests : IshikoTestFrameworkCore
 
     headers
     {
-        ../../Source/XMLDocumentTests.h
+        ../../Source/DocumentTests.h
     }
 
     sources
     {
         ../../Source/main.cpp
-        ../../Source/XMLDocumentTests.cpp
+        ../../Source/DocumentTests.cpp
     }
 }

@@ -20,12 +20,12 @@
     <ClInclude Include="..\..\Include\Ishiko\XML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\XML\XMLDocument.h">
+    <ClInclude Include="..\..\Include\Ishiko\XML\Document.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\XMLDocument.cpp">
+    <ClCompile Include="..\..\Source\Document.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

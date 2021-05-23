@@ -31,11 +31,11 @@ library IshikoXML
     {
         ../../Include/Ishiko/XML.h
 
-        ../../Include/Ishiko/XML/XMLDocument.h
+        ../../Include/Ishiko/XML/Document.h
     }
 
     sources
     {
-        ../../Source/XMLDocument.cpp
+        ../../Source/Document.cpp
     }
 }

@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_XML_H_
 #define _ISHIKO_XML_H_
 
-#include "XML/XMLDocument.h"
+#include "XML/Document.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "IshikoXML-d.lib")
