@@ -4,6 +4,7 @@
     See https://github.com/Ishiko-cpp/XML/blob/master/LICENSE.txt
 */
 
+#include "XMLDocumentTests.h"
 #include <Ishiko/TestFramework/TestFrameworkCore.h>
 
 using namespace Ishiko::Tests;
@@ -11,6 +12,9 @@ using namespace Ishiko::Tests;
 int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoXML");
+
+    TestSequence& theTests = theTestHarness.tests();
+    theTests.append<XMLDocumentTests>();
     
     return theTestHarness.run();
 }

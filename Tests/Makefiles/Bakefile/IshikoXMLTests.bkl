@@ -18,8 +18,14 @@ program IshikoXMLTests : IshikoTestFrameworkCore
         libs += IshikoTestFrameworkCore IshikoProcess IshikoErrors boost_filesystem boost_system;
     }
 
+    headers
+    {
+        ../../Source/XMLDocumentTests.h
+    }
+
     sources
     {
         ../../Source/main.cpp
+        ../../Source/XMLDocumentTests.cpp
     }
 }
