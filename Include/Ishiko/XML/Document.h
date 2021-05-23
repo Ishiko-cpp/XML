@@ -7,4 +7,16 @@
 #ifndef _ISHIKO_XML_DOCUMENT_H_
 #define _ISHIKO_XML_DOCUMENT_H_
 
+namespace Ishiko
+{
+namespace XML
+{
+
+class Document
+{
+};
+
+}
+}
+
 #endif
