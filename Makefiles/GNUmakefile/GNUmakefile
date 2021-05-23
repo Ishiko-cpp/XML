@@ -56,12 +56,12 @@ $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_er
 endif
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a: $(_builddir)IshikoXML_XMLFile.o
-	$(AR) rc $@ $(_builddir)IshikoXML_XMLFile.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a: $(_builddir)IshikoXML_XMLDocument.o
+	$(AR) rc $@ $(_builddir)IshikoXML_XMLDocument.o
 	$(RANLIB) $@
 
-$(_builddir)IshikoXML_XMLFile.o: ../../Source/XMLFile.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/XML -std=c++11 ../../Source/XMLFile.cpp
+$(_builddir)IshikoXML_XMLDocument.o: ../../Source/XMLDocument.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/XML -std=c++11 ../../Source/XMLDocument.cpp
 
 clean:
 	rm -f $(_builddir)*.o

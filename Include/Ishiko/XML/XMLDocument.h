@@ -4,4 +4,7 @@
     See https://github.com/Ishiko-cpp/XML/blob/master/LICENSE.txt
 */
 
-#include "XMLFile.h"
+#ifndef _ISHIKO_XML_XMLDOCUMENT_H_
+#define _ISHIKO_XML_XMLDOCUMENT_H_
+
+#endif
