@@ -37,11 +37,13 @@ library IshikoXML : IshikoErrors, pugixml, Boost
         ../../Include/Ishiko/XML.h
 
         ../../Include/Ishiko/XML/Document.h
+        ../../Include/Ishiko/XML/Element.h
         ../../Include/Ishiko/XML/linkoptions.h
     }
 
     sources
     {
         ../../Source/Document.cpp
+        ../../Source/Element.cpp
     }
 }

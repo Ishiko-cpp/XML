@@ -77,12 +77,15 @@ ISHIKO_CPP_PUGIXML_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_PUGIXML)
 
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a: $(_builddir)IshikoXML_Document.o
-	$(AR) rc $@ $(_builddir)IshikoXML_Document.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a: $(_builddir)IshikoXML_Document.o $(_builddir)IshikoXML_Element.o
+	$(AR) rc $@ $(_builddir)IshikoXML_Document.o $(_builddir)IshikoXML_Element.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoXML_Document.o: ../../Source/Document.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../Include/Ishiko/XML -std=c++11 ../../Source/Document.cpp
+
+$(_builddir)IshikoXML_Element.o: ../../Source/Element.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../Include/Ishiko/XML -std=c++11 ../../Source/Element.cpp
 
 clean:
 	rm -f $(_builddir)*.o

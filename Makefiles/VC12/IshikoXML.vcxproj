@@ -151,10 +151,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Document.cpp" />
+    <ClCompile Include="..\..\Source\Element.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\XML.h" />
     <ClInclude Include="..\..\Include\Ishiko\XML\Document.h" />
+    <ClInclude Include="..\..\Include\Ishiko\XML\Element.h" />
     <ClInclude Include="..\..\Include\Ishiko\XML\linkoptions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

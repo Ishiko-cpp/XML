@@ -23,12 +23,18 @@
     <ClInclude Include="..\..\Include\Ishiko\XML\Document.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\Ishiko\XML\Element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Include\Ishiko\XML\linkoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Document.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Element.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
