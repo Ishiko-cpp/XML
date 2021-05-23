@@ -13,6 +13,12 @@ jobs:
           name: Build
           command: cd /Ishiko-cpp/XML/Makefiles/GNUmakefile && make
       - run:
+          name: "Checkout Ishiko-cpp/TestFramework test dependency"
+          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/TestFramework.git
+      - run:
+          name: "Build Ishiko-cpp/TestFramework test dependency"
+          command: cd /Ishiko-cpp/TestFramework/Core/Makefiles/GNUmakefile && make
+      - run:
           name: Test build
           command: cd /Ishiko-cpp/XML/Tests/Makefiles/GNUmakefile && make
       - run:
