@@ -17,10 +17,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\DocumentTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\ElementTests.h">
+    <ClInclude Include="..\..\Source\WriterTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -28,10 +25,7 @@
     <ClCompile Include="..\..\Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\DocumentTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\ElementTests.cpp">
+    <ClCompile Include="..\..\Source\WriterTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

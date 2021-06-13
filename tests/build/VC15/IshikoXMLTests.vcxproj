@@ -153,12 +153,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\main.cpp" />
-    <ClCompile Include="..\..\Source\DocumentTests.cpp" />
-    <ClCompile Include="..\..\Source\ElementTests.cpp" />
+    <ClCompile Include="..\..\Source\WriterTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\DocumentTests.h" />
-    <ClInclude Include="..\..\Source\ElementTests.h" />
+    <ClInclude Include="..\..\Source\WriterTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
