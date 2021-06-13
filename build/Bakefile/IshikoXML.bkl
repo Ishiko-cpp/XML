@@ -36,14 +36,12 @@ library IshikoXML : IshikoErrors, pugixml, Boost
     {
         ../../include/Ishiko/XML.h
 
-        ../../include/Ishiko/XML/Document.h
-        ../../include/Ishiko/XML/Element.h
+        ../../include/Ishiko/XML/Writer.h
         ../../include/Ishiko/XML/linkoptions.h
     }
 
     sources
     {
-        ../../src/Document.cpp
-        ../../src/Element.cpp
+        ../../src/Writer.cpp
     }
 }
