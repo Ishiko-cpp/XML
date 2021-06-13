@@ -5,3 +5,23 @@
 */
 
 #include "Element.h"
+
+namespace Ishiko
+{
+namespace XML
+{
+
+Element::Element()
+{
+}
+
+Element::Element(pugi::xml_node node)
+{
+}
+
+void Element::appendChild(const std::string& name)
+{
+}
+
+}
+}

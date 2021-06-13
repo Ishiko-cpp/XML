@@ -12,6 +12,10 @@ namespace Ishiko
 namespace XML
 {
 
+Document::Document()
+{
+}
+
 void Document::create(const boost::filesystem::path& path, const std::string& rootElementName, Ishiko::Error& error)
 {
     m_path = path;
@@ -21,6 +25,11 @@ void Document::create(const boost::filesystem::path& path, const std::string& ro
         std::ofstream file(m_path.string());
         m_document.save(file);
     }
+}
+
+const Element& Document::root() const
+{
+    return m_root;
 }
 
 void Document::commit()

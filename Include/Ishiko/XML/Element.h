@@ -7,6 +7,9 @@
 #ifndef _ISHIKO_XML_ELEMENT_H_
 #define _ISHIKO_XML_ELEMENT_H_
 
+#include <pugixml.hpp>
+#include <string>
+
 namespace Ishiko
 {
 namespace XML
@@ -14,6 +17,11 @@ namespace XML
 
 class Element
 {
+public:
+    Element();
+    Element(pugi::xml_node node);
+
+    void appendChild(const std::string& name);
 };
 
 }
