@@ -1,17 +1,16 @@
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/Boost.bkl;
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/pugixml.bkl;
+import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/Boost.bkl;
+import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/pugixml.bkl;
 
 setting ISHIKO_CPP_XML_ROOT
 {
     help = "Path to the Ishiko XML installation";
-    default = '$(ISHIKO_CPP)/XML';
+    default = '$(ISHIKO_CPP)/xml';
 }
 
-template IshikoXML : IshikoErrors, pugixml, Boost
+template IshikoXML : pugixml, Boost
 {
-    includedirs += $(ISHIKO_CPP_XML_ROOT)/Include;
+    includedirs += $(ISHIKO_CPP_XML_ROOT)/include;
 
     if ($(toolset) == gnu)
     {
