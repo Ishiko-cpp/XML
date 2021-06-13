@@ -17,7 +17,7 @@ jobs:
           path: /projects/ishiko/cpp/xml
       - run:
           name: Build
-          command: cd /projects/ishiko/cpp/xml/Makefiles/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/xml/build/GNUmakefile && make
       - run:
           name: "Checkout Ishiko-cpp/Platform test dependency"
           command: cd /projects/ishiko/cpp && git clone https://github.com/Ishiko-cpp/Platform.git
