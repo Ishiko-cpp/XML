@@ -67,7 +67,7 @@ endif
 # 
 
 # Path to the Ishiko Errors installation
-ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/Errors
+ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/errors
 # Path to the Boost installation
 ISHIKO_CPP_BOOST_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_BOOST)
 # Path to the pugixml installation
@@ -81,11 +81,11 @@ all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,Is
 	$(AR) rc $@ $(_builddir)IshikoXML_Document.o $(_builddir)IshikoXML_Element.o
 	$(RANLIB) $@
 
-$(_builddir)IshikoXML_Document.o: ../../Source/Document.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../Include/Ishiko/XML -std=c++11 ../../Source/Document.cpp
+$(_builddir)IshikoXML_Document.o: ../../src/Document.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/XML -std=c++11 ../../src/Document.cpp
 
-$(_builddir)IshikoXML_Element.o: ../../Source/Element.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../Include/Ishiko/XML -std=c++11 ../../Source/Element.cpp
+$(_builddir)IshikoXML_Element.o: ../../src/Element.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/XML -std=c++11 ../../src/Element.cpp
 
 clean:
 	rm -f $(_builddir)*.o

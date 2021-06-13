@@ -1,7 +1,7 @@
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/Boost.bkl;
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/pugixml.bkl;
+import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/Boost.bkl;
+import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/pugixml.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
@@ -14,7 +14,7 @@ library IshikoXML : IshikoErrors, pugixml, Boost
 {
     archs = x86 x86_64;
 
-    includedirs += ../../Include/Ishiko/XML;
+    includedirs += ../../include/Ishiko/XML;
 
     if ($(toolset) == gnu)
     {
@@ -34,16 +34,16 @@ library IshikoXML : IshikoErrors, pugixml, Boost
 
     headers
     {
-        ../../Include/Ishiko/XML.h
+        ../../include/Ishiko/XML.h
 
-        ../../Include/Ishiko/XML/Document.h
-        ../../Include/Ishiko/XML/Element.h
-        ../../Include/Ishiko/XML/linkoptions.h
+        ../../include/Ishiko/XML/Document.h
+        ../../include/Ishiko/XML/Element.h
+        ../../include/Ishiko/XML/linkoptions.h
     }
 
     sources
     {
-        ../../Source/Document.cpp
-        ../../Source/Element.cpp
+        ../../src/Document.cpp
+        ../../src/Element.cpp
     }
 }

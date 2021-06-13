@@ -17,24 +17,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Include\Ishiko\XML.h">
+    <ClInclude Include="..\..\include\Ishiko\XML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\XML\Document.h">
+    <ClInclude Include="..\..\include\Ishiko\XML\Document.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\XML\Element.h">
+    <ClInclude Include="..\..\include\Ishiko\XML\Element.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\XML\linkoptions.h">
+    <ClInclude Include="..\..\include\Ishiko\XML\linkoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Document.cpp">
+    <ClCompile Include="..\..\src\Document.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Element.cpp">
+    <ClCompile Include="..\..\src\Element.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
