@@ -1,18 +1,18 @@
 /*
     Copyright (c) 2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/XML/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/xml/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_XML_TESTS_DOCUMENTTESTS_H_
-#define _ISHIKO_XML_TESTS_DOCUMENTTESTS_H_
+#ifndef _ISHIKO_XML_TESTS_WRITERTESTS_H_
+#define _ISHIKO_XML_TESTS_WRITERTESTS_H_
 
 #include <Ishiko/TestFramework/TestFrameworkCore.h>
 
-class DocumentTests : public Ishiko::Tests::TestSequence
+class WriterTests : public Ishiko::Tests::TestSequence
 {
 public:
-    DocumentTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    WriterTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
