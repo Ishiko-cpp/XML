@@ -5,19 +5,16 @@ jobs:
       - image: ishikocpp/gcc-boost:10.1.0-1.73.0
     steps:
       - run:
-          name: "Set ISHIKO_CPP environment variable and create directory"
+          name: "Set ISHIKO_CPP environment variable and create workspace directory"
           command: mkdir -p /projects/ishiko/cpp && echo 'export ISHIKO_CPP="/projects/ishiko/cpp"' >> $BASH_ENV
       - run:
-          name: "Checkout Ishiko/C++ pugixml dependency"
+          name: "Install build dependency: Ishiko/C++ pugixml"
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/pugixml.git && echo 'export ISHIKO_CPP_THIRD_PARTY_PUGIXML="/projects/ishiko/cpp/pugixml"' >> $BASH_ENV
       - run:
-          name: "Checkout Ishiko/C++ Errors dependency"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/errors.git
+          name: "Install build dependency: Ishiko/C++ Errors"
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/errors.git && cd errors/build/GNUmakefile && make
       - checkout:
           path: /projects/ishiko/cpp/xml
-      - run:
-          name: "Build Ishiko/C++ Errors dependency"
-          command: cd /projects/ishiko/cpp/errors/build/GNUmakefile && make
       - run:
           name: Build
           command: cd /projects/ishiko/cpp/xml/Makefiles/GNUmakefile && make
