@@ -25,9 +25,6 @@ jobs:
           name: Build
           command: cd /projects/ishiko/cpp/xml/build/GNUmakefile && make
       - run:
-          name: "Install test dependency: Ishiko/C++ Platform"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/platform.git && cd platform/build/GNUmakefile && make
-      - run:
           name: "Install test dependency: Ishiko/C++ Text"
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd text/build/GNUmakefile && make
       - run:
