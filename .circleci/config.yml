@@ -13,6 +13,9 @@ jobs:
       - run:
           name: "Install build dependency: Ishiko/C++ Errors"
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/errors.git && cd errors/build/GNUmakefile && make
+      - run:
+          name: "Install build dependency: Ishiko/C++ FileSystem"
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/filesystem.git && cd errors/build/GNUmakefile && make
       - checkout:
           path: /projects/ishiko/cpp/xml
       - run:
