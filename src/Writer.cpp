@@ -5,7 +5,9 @@
 */
 
 #include "Writer.h"
-#include <fstream>
+#include <Ishiko/FileSystem.h>
+
+using namespace Ishiko::FileSystem;
 
 namespace Ishiko
 {
@@ -16,7 +18,16 @@ Writer::Writer()
 {
 }
 
-void Writer::create(const boost::filesystem::path& path, const std::string& rootElementName, Ishiko::Error& error)
+void Writer::create(const boost::filesystem::path& path, Ishiko::Error& error)
+{
+    CreateEmptyFile(path, error);
+}
+
+void Writer::writeStartDocument()
+{
+}
+
+void Writer::writeEndDocument()
 {
 }
 

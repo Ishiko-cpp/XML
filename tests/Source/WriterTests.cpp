@@ -16,6 +16,7 @@ WriterTests::WriterTests(const TestNumber& number, const TestEnvironment& enviro
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<FileComparisonTest>("create test 1", CreateTest1);
+    append<FileComparisonTest>("writeStartDocument test 1", WriteStartDocumentTest1);
 }
 
 void WriterTests::ConstructorTest1(Test& test)
@@ -32,11 +33,15 @@ void WriterTests::CreateTest1(FileComparisonTest& test)
     Writer writer;
 
     Error error;
-    writer.create(outputPath, "WriterTests_CreateTest1_Root", error);
+    writer.create(outputPath, error);
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.environment().getReferenceDataPath("WriterTests_CreateTest1.xml"));
 
     ISHTF_FAIL_IF(error);
     ISHTF_PASS();
+}
+
+void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
+{
 }

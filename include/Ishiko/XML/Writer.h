@@ -9,7 +9,6 @@
 
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.h>
-#include <string>
 
 namespace Ishiko
 {
@@ -21,7 +20,10 @@ class Writer
 public:
     Writer();
 
-    void create(const boost::filesystem::path& path, const std::string& rootElementName, Ishiko::Error& error);
+    void create(const boost::filesystem::path& path, Ishiko::Error& error);
+
+    void writeStartDocument();
+    void writeEndDocument();
 };
 
 }

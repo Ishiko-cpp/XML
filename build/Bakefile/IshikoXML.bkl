@@ -1,5 +1,6 @@
 ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+import $(ishikopath)/filesystem/include/Ishiko/FileSystem.bkl;
 import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/Boost.bkl;
 import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/pugixml.bkl;
 
@@ -10,7 +11,7 @@ vs2017.solutionfile = ../VC15/IshikoXML.sln;
 vs2015.solutionfile = ../VC14/IshikoXML.sln;
 vs2013.solutionfile = ../VC12/IshikoXML.sln;
 
-library IshikoXML : IshikoErrors, pugixml, Boost
+library IshikoXML : IshikoFileSystem, IshikoErrors, pugixml, Boost
 {
     archs = x86 x86_64;
 
