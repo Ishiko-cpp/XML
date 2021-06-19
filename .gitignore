@@ -1,0 +1,6 @@
+/Lib/*
+!/Lib/README.md
+build/VC15/.vs/
+build/VC15/x64/
+build/VC15/IshikoXML.vcxproj.user
+Tests/TestOutput/
