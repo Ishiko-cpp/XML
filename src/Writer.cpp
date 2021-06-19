@@ -5,7 +5,6 @@
 */
 
 #include "Writer.h"
-#include <Ishiko/FileSystem.h>
 
 using namespace Ishiko::FileSystem;
 
@@ -20,11 +19,12 @@ Writer::Writer()
 
 void Writer::create(const boost::filesystem::path& path, Ishiko::Error& error)
 {
-    CreateEmptyFile(path, error);
+    m_file.create(path.string(), error);
 }
 
 void Writer::writeStartDocument()
 {
+    m_file.writeLine("<?xml version=\"1.0\"?>");
 }
 
 void Writer::writeEndDocument()

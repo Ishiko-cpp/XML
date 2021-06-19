@@ -35,13 +35,29 @@ void WriterTests::CreateTest1(FileComparisonTest& test)
     Error error;
     writer.create(outputPath, error);
 
+    ISHTF_FAIL_IF(error);
+
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.environment().getReferenceDataPath("WriterTests_CreateTest1.xml"));
 
-    ISHTF_FAIL_IF(error);
     ISHTF_PASS();
 }
 
 void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
 {
+    boost::filesystem::path outputPath = test.environment().getTestOutputPath("WriterTests_WriteStartDocumentTest1.xml");
+
+    Writer writer;
+
+    Error error;
+    writer.create(outputPath, error);
+
+    ISHTF_FAIL_IF(error);
+
+    writer.writeStartDocument();
+
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.environment().getReferenceDataPath("WriterTests_WriteStartDocumentTest1.xml"));
+
+    ISHTF_PASS();
 }

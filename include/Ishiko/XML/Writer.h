@@ -9,6 +9,7 @@
 
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.h>
+#include <Ishiko/FileSystem.h>
 
 namespace Ishiko
 {
@@ -24,6 +25,9 @@ public:
 
     void writeStartDocument();
     void writeEndDocument();
+
+private:
+    FileSystem::TextFile m_file;
 };
 
 }
