@@ -90,7 +90,7 @@ ISHIKO_CPP_TESTFRAMEWORK_ROOT ?= $(ISHIKO_CPP)/test
 all: $(_builddir)IshikoXMLTests
 
 $(_builddir)IshikoXMLTests: $(_builddir)IshikoXMLTests_main.o $(_builddir)IshikoXMLTests_WriterTests.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoXMLTests_main.o $(_builddir)IshikoXMLTests_WriterTests.o -L$(ISHIKO_CPP_ERRORS_ROOT)/Lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_FILESYSTEM_ROOT)/Lib -L$(ISHIKO_CPP_XML_ROOT)/Lib -L$(ISHIKO_CPP_TEXT_ROOT)/Lib -L$(ISHIKO_CPP_PROCESS_ROOT)/Lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Lib -lIshikoXML -lIshikoTestFrameworkCore -lIshikoProcess -lIshikoErrors -lboost_filesystem -lboost_system -pthread
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoXMLTests_main.o $(_builddir)IshikoXMLTests_WriterTests.o -L$(ISHIKO_CPP_ERRORS_ROOT)/Lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_FILESYSTEM_ROOT)/Lib -L$(ISHIKO_CPP_XML_ROOT)/Lib -L$(ISHIKO_CPP_TEXT_ROOT)/Lib -L$(ISHIKO_CPP_PROCESS_ROOT)/Lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Lib -lIshikoXML -lIshikoTestFrameworkCore -lIshikoFileSystem -lIshikoProcess -lIshikoErrors -lboost_filesystem -lboost_system -pthread
 
 $(_builddir)IshikoXMLTests_main.o: ../../Source/main.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I$(ISHIKO_CPP_XML_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/main.cpp
