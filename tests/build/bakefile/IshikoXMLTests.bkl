@@ -16,7 +16,7 @@ program IshikoXMLTests : IshikoXML, IshikoTestsCore
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += IshikoXML IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoErrors boost_filesystem boost_system;
+        libs += IshikoXML IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoText IshikoErrors boost_filesystem boost_system;
     }
 
     headers
