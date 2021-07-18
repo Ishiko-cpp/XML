@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ishikocpp/gcc-boost:10.1.0-1.73.0
+      - image: ishiko/gcc-boost:11.1.0-1.76.0
     steps:
       - run:
           name: "Set ISHIKO_CPP environment variable and create workspace directory"
@@ -12,13 +12,13 @@ jobs:
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/pugixml.git && echo 'export ISHIKO_CPP_THIRD_PARTY_PUGIXML="/projects/ishiko/cpp/pugixml"' >> $BASH_ENV
       - run:
           name: "Install build dependency: Ishiko/C++ Platform"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/platform.git && cd platform/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/platform.git && cd platform/build/gnumake && make
       - run:
           name: "Install build dependency: Ishiko/C++ Errors"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/errors.git && cd errors/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/errors.git && cd errors/build/gnumake && make
       - run:
           name: "Install build dependency: Ishiko/C++ FileSystem"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/filesystem.git && cd filesystem/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/filesystem.git && cd filesystem/build/gnumake && make
       - checkout:
           path: /projects/ishiko/cpp/xml
       - run:
@@ -26,16 +26,31 @@ jobs:
           command: cd /projects/ishiko/cpp/xml/build/GNUmakefile && make
       - run:
           name: "Install test dependency: Ishiko/C++ Text"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd text/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd text/build/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ Process"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/process.git && cd process/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/process.git && cd process/build/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ Test"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/test.git && cd test/core/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/test.git && cd test/core/build/gnumake && make
       - run:
           name: Test build
-          command: cd /projects/ishiko/cpp/xml/tests/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/xml/tests/build/gnumake && make
       - run:
           name: Run the tests
-          command: cd /projects/ishiko/cpp/xml/tests/build/GNUmakefile && ./IshikoXMLTests
+          command: cd /projects/ishiko/cpp/xml/tests/build/gnumake && ./IshikoXMLTests
+workflows:
+  version: 2
+  continuous_build:
+    jobs:
+      - build
+  weekly_build:
+    jobs:
+      - build
+    triggers:
+      - schedule:
+          cron: "0 8 * * 0"
+          filters:
+            branches:
+              only:
+                 - main
