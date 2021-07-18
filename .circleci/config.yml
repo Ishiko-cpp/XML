@@ -23,7 +23,7 @@ jobs:
           path: /projects/ishiko/cpp/xml
       - run:
           name: Build
-          command: cd /projects/ishiko/cpp/xml/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/xml/build/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ Text"
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd text/build/gnumake && make
