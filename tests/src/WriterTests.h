@@ -1,13 +1,13 @@
 /*
     Copyright (c) 2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/ishiko-cpp/xml/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/xml/blob/main/LICENSE.txt
 */
 
 #ifndef _ISHIKO_XML_TESTS_WRITERTESTS_H_
 #define _ISHIKO_XML_TESTS_WRITERTESTS_H_
 
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#include <Ishiko/Tests/Core.h>
 
 class WriterTests : public Ishiko::Tests::TestSequence
 {
