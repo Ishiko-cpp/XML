@@ -1,12 +1,12 @@
 /*
     Copyright (c) 2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/ishiko-cpp/xml/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/xml/blob/main/LICENSE.txt
 */
 
 #include "WriterTests.h"
 #include "Ishiko/XML/linkoptions.h"
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#include <Ishiko/Tests/Core.h>
 
 using namespace Ishiko::Tests;
 
