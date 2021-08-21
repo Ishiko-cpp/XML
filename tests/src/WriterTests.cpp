@@ -23,7 +23,7 @@ void WriterTests::ConstructorTest1(Test& test)
 {
     Writer writer;
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void WriterTests::CreateTest1(FileComparisonTest& test)
@@ -35,12 +35,12 @@ void WriterTests::CreateTest1(FileComparisonTest& test)
     Error error;
     writer.create(outputPath, error);
 
-    ISHTF_FAIL_IF(error);
+    ISHIKO_FAIL_IF(error);
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.environment().getReferenceDataPath("WriterTests_CreateTest1.xml"));
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
@@ -52,12 +52,12 @@ void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
     Error error;
     writer.create(outputPath, error);
 
-    ISHTF_FAIL_IF(error);
+    ISHIKO_FAIL_IF(error);
 
     writer.writeStartDocument();
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.environment().getReferenceDataPath("WriterTests_WriteStartDocumentTest1.xml"));
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
