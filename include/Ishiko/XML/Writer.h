@@ -8,7 +8,7 @@
 #define _ISHIKO_XML_WRITER_H_
 
 #include <boost/filesystem.hpp>
-#include <Ishiko/Errors.h>
+#include <Ishiko/Errors.hpp>
 #include <Ishiko/FileSystem.h>
 
 namespace Ishiko
