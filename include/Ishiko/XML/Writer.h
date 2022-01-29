@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2021 Xavier Leclercq
+    Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/xml/blob/master/LICENSE.txt
 */
@@ -9,7 +9,7 @@
 
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
-#include <Ishiko/FileSystem.h>
+#include <Ishiko/FileSystem.hpp>
 
 namespace Ishiko
 {
