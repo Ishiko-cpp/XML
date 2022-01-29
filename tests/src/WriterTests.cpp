@@ -1,18 +1,20 @@
 /*
-    Copyright (c) 2021 Xavier Leclercq
+    Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/xml/blob/main/LICENSE.txt
 */
 
 #include "WriterTests.h"
 #include "Ishiko/XML/Writer.h"
+#include <boost/filesystem.hpp>
 
+using namespace boost::filesystem;
 using namespace Ishiko;
 using namespace Ishiko::Tests;
 using namespace Ishiko::XML;
 
-WriterTests::WriterTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "Writer tests", environment)
+WriterTests::WriterTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "Writer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<FileComparisonTest>("create test 1", CreateTest1);
@@ -28,7 +30,7 @@ void WriterTests::ConstructorTest1(Test& test)
 
 void WriterTests::CreateTest1(FileComparisonTest& test)
 {
-    boost::filesystem::path outputPath = test.environment().getTestOutputPath("WriterTests_CreateTest1.xml");
+    path outputPath = test.context().getTestOutputPath("WriterTests_CreateTest1.xml");
 
     Writer writer;
 
@@ -38,14 +40,14 @@ void WriterTests::CreateTest1(FileComparisonTest& test)
     ISHIKO_FAIL_IF(error);
 
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataPath("WriterTests_CreateTest1.xml"));
+    test.setReferenceFilePath(test.context().getReferenceDataPath("WriterTests_CreateTest1.xml"));
 
     ISHIKO_PASS();
 }
 
 void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
 {
-    boost::filesystem::path outputPath = test.environment().getTestOutputPath("WriterTests_WriteStartDocumentTest1.xml");
+    path outputPath = test.context().getTestOutputPath("WriterTests_WriteStartDocumentTest1.xml");
 
     Writer writer;
 
@@ -57,7 +59,7 @@ void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
     writer.writeStartDocument();
 
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataPath("WriterTests_WriteStartDocumentTest1.xml"));
+    test.setReferenceFilePath(test.context().getReferenceDataPath("WriterTests_WriteStartDocumentTest1.xml"));
 
     ISHIKO_PASS();
 }
