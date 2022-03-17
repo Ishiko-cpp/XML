@@ -27,7 +27,7 @@ public:
     void writeEndDocument();
 
 private:
-    FileSystem::TextFile m_file;
+    TextFile m_file;
 };
 
 }
