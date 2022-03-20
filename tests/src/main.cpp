@@ -5,7 +5,7 @@
 */
 
 #include "WriterTests.h"
-#include "Ishiko/XML/linkoptions.h"
+#include "Ishiko/XML/linkoptions.hpp"
 #include <Ishiko/Tests/Core.hpp>
 
 using namespace Ishiko;
