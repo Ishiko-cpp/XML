@@ -13,15 +13,13 @@
 
 namespace Ishiko
 {
-namespace XML
-{
 
-class Writer
+class XMLWriter
 {
 public:
-    Writer();
+    XMLWriter();
 
-    void create(const boost::filesystem::path& path, Ishiko::Error& error);
+    void create(const boost::filesystem::path& path, Error& error);
 
     void writeStartDocument();
     void writeEndDocument();
@@ -30,7 +28,6 @@ private:
     TextFile m_file;
 };
 
-}
 }
 
 #endif

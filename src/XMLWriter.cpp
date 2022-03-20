@@ -6,30 +6,25 @@
 
 #include "XMLWriter.hpp"
 
-using namespace Ishiko::FileSystem;
-
 namespace Ishiko
 {
-namespace XML
-{
 
-Writer::Writer()
+XMLWriter::XMLWriter()
 {
 }
 
-void Writer::create(const boost::filesystem::path& path, Ishiko::Error& error)
+void XMLWriter::create(const boost::filesystem::path& path, Error& error)
 {
     m_file.create(path.string(), error);
 }
 
-void Writer::writeStartDocument()
+void XMLWriter::writeStartDocument()
 {
     m_file.writeLine("<?xml version=\"1.0\"?>");
 }
 
-void Writer::writeEndDocument()
+void XMLWriter::writeEndDocument()
 {
 }
 
-}
 }

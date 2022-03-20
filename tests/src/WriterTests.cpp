@@ -5,12 +5,11 @@
 */
 
 #include "WriterTests.h"
-#include "Ishiko/XML/Writer.h"
+#include "Ishiko/XML/XMLWriter.hpp"
 #include <boost/filesystem.hpp>
 
 using namespace boost::filesystem;
 using namespace Ishiko;
-using namespace Ishiko::XML;
 
 WriterTests::WriterTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Writer tests", context)
@@ -22,7 +21,7 @@ WriterTests::WriterTests(const TestNumber& number, const TestContext& context)
 
 void WriterTests::ConstructorTest1(Test& test)
 {
-    Writer writer;
+    XMLWriter writer;
 
     ISHIKO_TEST_PASS();
 }
@@ -31,7 +30,7 @@ void WriterTests::CreateTest1(FileComparisonTest& test)
 {
     path outputPath = test.context().getTestOutputPath("WriterTests_CreateTest1.xml");
 
-    Writer writer;
+    XMLWriter writer;
 
     Error error;
     writer.create(outputPath, error);
@@ -48,7 +47,7 @@ void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
 {
     path outputPath = test.context().getTestOutputPath("WriterTests_WriteStartDocumentTest1.xml");
 
-    Writer writer;
+    XMLWriter writer;
 
     Error error;
     writer.create(outputPath, error);
