@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/xml/blob/main/LICENSE.txt
 */
 
-#include "XMLWriterTests.h"
+#include "XMLWriterTests.hpp"
 #include "Ishiko/XML/linkoptions.hpp"
 #include <Ishiko/Tests/Core.hpp>
 
