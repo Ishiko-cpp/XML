@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/xml/blob/main/LICENSE.txt
 */
 
-#include "WriterTests.h"
-#include "Ishiko/XML/linkoptions.h"
+#include "XMLWriterTests.hpp"
+#include "Ishiko/XML/linkoptions.hpp"
 #include <Ishiko/Tests/Core.hpp>
 
 using namespace Ishiko;
@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     theTestHarness.context().setReferenceDataDirectory("../../reference");
 
     TestSequence& theTests = theTestHarness.tests();
-    theTests.append<WriterTests>();
+    theTests.append<XMLWriterTests>();
     
     return theTestHarness.run();
 }
