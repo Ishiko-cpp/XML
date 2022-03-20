@@ -10,7 +10,6 @@
 
 using namespace boost::filesystem;
 using namespace Ishiko;
-using namespace Ishiko::Tests;
 using namespace Ishiko::XML;
 
 WriterTests::WriterTests(const TestNumber& number, const TestContext& context)
@@ -25,7 +24,7 @@ void WriterTests::ConstructorTest1(Test& test)
 {
     Writer writer;
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void WriterTests::CreateTest1(FileComparisonTest& test)
@@ -37,12 +36,12 @@ void WriterTests::CreateTest1(FileComparisonTest& test)
     Error error;
     writer.create(outputPath, error);
 
-    ISHIKO_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(error);
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("WriterTests_CreateTest1.xml"));
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
@@ -54,12 +53,12 @@ void WriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
     Error error;
     writer.create(outputPath, error);
 
-    ISHIKO_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(error);
 
     writer.writeStartDocument();
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("WriterTests_WriteStartDocumentTest1.xml"));
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
