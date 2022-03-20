@@ -150,12 +150,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Writer.cpp" />
+    <ClCompile Include="..\..\src\XMLWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Ishiko\XML.h" />
-    <ClInclude Include="..\..\include\Ishiko\XML\Writer.h" />
-    <ClInclude Include="..\..\include\Ishiko\XML\linkoptions.h" />
+    <ClInclude Include="..\..\include\Ishiko\XML.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\XML\XMLWriter.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\XML\linkoptions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

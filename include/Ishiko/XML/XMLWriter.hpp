@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/xml/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_XML_WRITER_H_
-#define _ISHIKO_XML_WRITER_H_
+#ifndef _ISHIKO_CPP_XML_XMLWRITER_HPP_
+#define _ISHIKO_CPP_XML_XMLWRITER_HPP_
 
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>

@@ -83,12 +83,12 @@ ISHIKO_CPP_PUGIXML_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_PUGIXML)
 
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a: $(_builddir)IshikoXML_Writer.o
-	$(AR) rc $@ $(_builddir)IshikoXML_Writer.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a: $(_builddir)IshikoXML_XMLWriter.o
+	$(AR) rc $@ $(_builddir)IshikoXML_XMLWriter.o
 	$(RANLIB) $@
 
-$(_builddir)IshikoXML_Writer.o: ../../src/Writer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/Writer.cpp
+$(_builddir)IshikoXML_XMLWriter.o: ../../src/XMLWriter.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLWriter.cpp
 
 clean:
 	rm -f $(_builddir)*.o
