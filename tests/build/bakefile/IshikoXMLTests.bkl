@@ -22,12 +22,12 @@ program IshikoXMLTests : IshikoXML, IshikoTestsCore
 
     headers
     {
-        ../../src/WriterTests.h
+        ../../src/XMLWriterTests.hpp
     }
 
     sources
     {
         ../../src/main.cpp
-        ../../src/WriterTests.cpp
+        ../../src/XMLWriterTests.cpp
     }
 }
