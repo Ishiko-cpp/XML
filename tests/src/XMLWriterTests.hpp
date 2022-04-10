@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_XML_TESTS_XMLWRITERTESTS_HPP_
 #define _ISHIKO_XML_TESTS_XMLWRITERTESTS_HPP_
 
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 class XMLWriterTests : public Ishiko::TestSequence
 {
