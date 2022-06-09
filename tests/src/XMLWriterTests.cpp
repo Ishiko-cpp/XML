@@ -16,7 +16,7 @@ XMLWriterTests::XMLWriterTests(const TestNumber& number, const TestContext& cont
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<FileComparisonTest>("create test 1", CreateTest1);
-    append<FileComparisonTest>("writeStartDocument test 1", WriteStartDocumentTest1);
+    append<FileComparisonTest>("writeXMLDeclaration test 1", WriteXMLDeclarationTest1);
 }
 
 void XMLWriterTests::ConstructorTest1(Test& test)
@@ -43,9 +43,9 @@ void XMLWriterTests::CreateTest1(FileComparisonTest& test)
     ISHIKO_TEST_PASS();
 }
 
-void XMLWriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
+void XMLWriterTests::WriteXMLDeclarationTest1(FileComparisonTest& test)
 {
-    path outputPath = test.context().getTestOutputPath("XMLWriterTests_WriteStartDocumentTest1.xml");
+    path outputPath = test.context().getTestOutputPath("XMLWriterTests_WriteXMLDeclarationTest1.xml");
 
     XMLWriter writer;
 
@@ -54,10 +54,10 @@ void XMLWriterTests::WriteStartDocumentTest1(FileComparisonTest& test)
 
     ISHIKO_TEST_FAIL_IF(error);
 
-    writer.writeStartDocument();
+    writer.writeXMLDeclaration();
 
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.context().getReferenceDataPath("XMLWriterTests_WriteStartDocumentTest1.xml"));
+    test.setReferenceFilePath(test.context().getReferenceDataPath("XMLWriterTests_WriteXMLDeclarationTest1.xml"));
 
     ISHIKO_TEST_PASS();
 }

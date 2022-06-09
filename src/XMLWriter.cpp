@@ -18,13 +18,9 @@ void XMLWriter::create(const boost::filesystem::path& path, Error& error)
     m_file.create(path.string(), error);
 }
 
-void XMLWriter::writeStartDocument()
+void XMLWriter::writeXMLDeclaration()
 {
-    m_file.writeLine("<?xml version=\"1.0\"?>");
-}
-
-void XMLWriter::writeEndDocument()
-{
+    m_file.writeLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 }
 
 }

@@ -21,8 +21,7 @@ public:
 
     void create(const boost::filesystem::path& path, Error& error);
 
-    void writeStartDocument();
-    void writeEndDocument();
+    void writeXMLDeclaration();
 
 private:
     TextFile m_file;
