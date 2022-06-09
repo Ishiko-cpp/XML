@@ -31,6 +31,20 @@ void XMLWriter::writeXMLDeclaration()
 
 void XMLWriter::writeElementStart(const std::string& name)
 {
+    // TODO: handle errors
+    switch (m_mode)
+    {
+    case Mode::elementStartTagOpen:
+        // We have an unclosed start tag
+        m_file.write(">");
+        m_mode = Mode::elementStartTagClosed;
+        break;
+
+    default:
+        // TODO
+        break;
+    }
+
     m_file.write("<");
     m_file.write(name);
     m_openElements.push_back(name);
@@ -60,7 +74,14 @@ void XMLWriter::writeElementEnd()
     }
 
     m_openElements.pop_back();
-    // TODO: what mode do we go back to?
+    if (m_openElements.empty())
+    {
+        m_mode = Mode::initial; // TODO: better state
+    }
+    else
+    {
+        m_mode = Mode::elementStartTagClosed;
+    }
 }
 
 void XMLWriter::writeAttribute(const std::string& name, const std::string& value)

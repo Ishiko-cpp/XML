@@ -18,6 +18,8 @@ XMLWriterTests::XMLWriterTests(const TestNumber& number, const TestContext& cont
     append<FileComparisonTest>("writeXMLDeclaration test 1", WriteXMLDeclarationTest1);
     append<HeapAllocationErrorsTest>("writeElementStart test 1", WriteElementStartTest1);
     append<HeapAllocationErrorsTest>("writeElementStart test 2", WriteElementStartTest2);
+    append<HeapAllocationErrorsTest>("writeElementStart test 3", WriteElementStartTest3);
+    append<HeapAllocationErrorsTest>("writeElementStart test 4", WriteElementStartTest4);
     append<HeapAllocationErrorsTest>("writeAttribute test 1", WriteAttributeTest1);
     append<HeapAllocationErrorsTest>("writeAttribute test 2", WriteAttributeTest2);
 }
@@ -114,6 +116,58 @@ void XMLWriterTests::WriteElementStartTest2(Test& test)
 
     ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest2.xml",
         "XMLWriterTests_WriteElementStartTest2.xml");
+    ISHIKO_TEST_PASS();
+}
+
+void XMLWriterTests::WriteElementStartTest3(Test& test)
+{
+    boost::filesystem::path outputPath =
+        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest3.xml");
+
+    XMLWriter writer;
+
+    Error error;
+    writer.create(outputPath, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    writer.writeXMLDeclaration();
+    writer.writeElementStart("book");
+    writer.writeElementEnd();
+    writer.writeElementStart("journal");
+    writer.writeElementEnd();
+
+    writer.close();
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest3.xml",
+        "XMLWriterTests_WriteElementStartTest3.xml");
+    ISHIKO_TEST_PASS();
+}
+
+void XMLWriterTests::WriteElementStartTest4(Test& test)
+{
+    boost::filesystem::path outputPath =
+        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest4.xml");
+
+    XMLWriter writer;
+
+    Error error;
+    writer.create(outputPath, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    writer.writeXMLDeclaration();
+    writer.writeElementStart("book");
+    writer.writeText("A book by H.G. Wells");
+    writer.writeElementEnd();
+    writer.writeElementStart("journal");
+    writer.writeText("The Times");
+    writer.writeElementEnd();
+
+    writer.close();
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest4.xml",
+        "XMLWriterTests_WriteElementStartTest4.xml");
     ISHIKO_TEST_PASS();
 }
 
