@@ -79,8 +79,7 @@ void XMLWriter::writeText(const std::string& text)
         break;
     }
 
-    
-    m_openElements.pop_back();
+    m_file.write(text);
 }
 
 }
