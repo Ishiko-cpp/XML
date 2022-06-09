@@ -10,6 +10,8 @@
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
 #include <Ishiko/FileSystem.hpp>
+#include <string>
+#include <vector>
 
 namespace Ishiko
 {
@@ -22,9 +24,19 @@ public:
     void create(const boost::filesystem::path& path, Error& error);
 
     void writeXMLDeclaration();
+    void writeElementStart(const std::string& name);
+    void writeElementEnd();
 
 private:
+    enum class Mode
+    {
+        initial,
+        elementStart
+    };
+
     TextFile m_file;
+    Mode m_mode;
+    std::vector<std::string> m_openElements;
 };
 
 }
