@@ -20,6 +20,9 @@ XMLWriterTests::XMLWriterTests(const TestNumber& number, const TestContext& cont
     append<HeapAllocationErrorsTest>("writeElementStart test 2", WriteElementStartTest2);
     append<HeapAllocationErrorsTest>("writeElementStart test 3", WriteElementStartTest3);
     append<HeapAllocationErrorsTest>("writeElementStart test 4", WriteElementStartTest4);
+    append<HeapAllocationErrorsTest>("writeElementStart test 5", WriteElementStartTest5);
+    append<HeapAllocationErrorsTest>("writeElementStart test 6", WriteElementStartTest6);
+    append<HeapAllocationErrorsTest>("writeElementStart test 7", WriteElementStartTest7);
     append<HeapAllocationErrorsTest>("writeAttribute test 1", WriteAttributeTest1);
     append<HeapAllocationErrorsTest>("writeAttribute test 2", WriteAttributeTest2);
 }
@@ -168,6 +171,90 @@ void XMLWriterTests::WriteElementStartTest4(Test& test)
 
     ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest4.xml",
         "XMLWriterTests_WriteElementStartTest4.xml");
+    ISHIKO_TEST_PASS();
+}
+
+void XMLWriterTests::WriteElementStartTest5(Test& test)
+{
+    boost::filesystem::path outputPath =
+        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest5.xml");
+
+    XMLWriter writer;
+
+    Error error;
+    writer.create(outputPath, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    writer.writeXMLDeclaration();
+    writer.writeElementStart("book");
+    writer.writeElementStart("title");
+    writer.writeElementEnd();
+    writer.writeElementEnd();
+
+    writer.close();
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest5.xml",
+        "XMLWriterTests_WriteElementStartTest5.xml");
+    ISHIKO_TEST_PASS();
+}
+
+void XMLWriterTests::WriteElementStartTest6(Test& test)
+{
+    boost::filesystem::path outputPath =
+        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest6.xml");
+
+    XMLWriter writer;
+
+    Error error;
+    writer.create(outputPath, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    writer.writeXMLDeclaration();
+    writer.writeElementStart("book");
+    writer.writeElementStart("metadata");
+    writer.writeElementStart("title");
+    writer.writeElementEnd();
+    writer.writeElementEnd();
+    writer.writeElementEnd();
+
+    writer.close();
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest6.xml",
+        "XMLWriterTests_WriteElementStartTest6.xml");
+    ISHIKO_TEST_PASS();
+}
+
+void XMLWriterTests::WriteElementStartTest7(Test& test)
+{
+    boost::filesystem::path outputPath =
+        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest7.xml");
+
+    XMLWriter writer;
+
+    Error error;
+    writer.create(outputPath, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    writer.writeXMLDeclaration();
+    writer.writeElementStart("book");
+    writer.writeText("text1");
+    writer.writeElementStart("metadata");
+    writer.writeText("text2");
+    writer.writeElementStart("title");
+    writer.writeText("text3");
+    writer.writeElementEnd();
+    writer.writeText("text4");
+    writer.writeElementEnd();
+    writer.writeText("text5");
+    writer.writeElementEnd();
+
+    writer.close();
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest7.xml",
+        "XMLWriterTests_WriteElementStartTest7.xml");
     ISHIKO_TEST_PASS();
 }
 

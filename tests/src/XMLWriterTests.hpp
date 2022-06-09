@@ -22,6 +22,9 @@ private:
     static void WriteElementStartTest2(Ishiko::Test& test);
     static void WriteElementStartTest3(Ishiko::Test& test);
     static void WriteElementStartTest4(Ishiko::Test& test);
+    static void WriteElementStartTest5(Ishiko::Test& test);
+    static void WriteElementStartTest6(Ishiko::Test& test);
+    static void WriteElementStartTest7(Ishiko::Test& test);
     static void WriteAttributeTest1(Ishiko::Test& test);
     static void WriteAttributeTest2(Ishiko::Test& test);
 };
