@@ -17,7 +17,16 @@ public:
 private:
     static void ConstructorTest1(Ishiko::Test& test);
     static void CreateTest1(Ishiko::FileComparisonTest& test);
-    static void WriteStartDocumentTest1(Ishiko::FileComparisonTest& test);
+    static void WriteXMLDeclarationTest1(Ishiko::FileComparisonTest& test);
+    static void WriteElementStartTest1(Ishiko::Test& test);
+    static void WriteElementStartTest2(Ishiko::Test& test);
+    static void WriteElementStartTest3(Ishiko::Test& test);
+    static void WriteElementStartTest4(Ishiko::Test& test);
+    static void WriteElementStartTest5(Ishiko::Test& test);
+    static void WriteElementStartTest6(Ishiko::Test& test);
+    static void WriteElementStartTest7(Ishiko::Test& test);
+    static void WriteAttributeTest1(Ishiko::Test& test);
+    static void WriteAttributeTest2(Ishiko::Test& test);
 };
 
 #endif
