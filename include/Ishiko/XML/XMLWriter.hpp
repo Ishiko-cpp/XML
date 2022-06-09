@@ -20,18 +20,20 @@ class XMLWriter
 {
 public:
     XMLWriter();
-
     void create(const boost::filesystem::path& path, Error& error);
+    void close();
 
     void writeXMLDeclaration();
     void writeElementStart(const std::string& name);
     void writeElementEnd();
+    void writeText(const std::string& text);
 
 private:
     enum class Mode
     {
         initial,
-        elementStart
+        elementStartTagOpen,
+        elementStartTagClosed
     };
 
     TextFile m_file;

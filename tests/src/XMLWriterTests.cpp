@@ -37,6 +37,8 @@ void XMLWriterTests::CreateTest1(FileComparisonTest& test)
 
     ISHIKO_TEST_FAIL_IF(error);
 
+    writer.close();
+
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("XMLWriterTests_CreateTest1.xml"));
 
@@ -56,6 +58,8 @@ void XMLWriterTests::WriteXMLDeclarationTest1(FileComparisonTest& test)
     ISHIKO_TEST_FAIL_IF(error);
 
     writer.writeXMLDeclaration();
+
+    writer.close();
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("XMLWriterTests_WriteXMLDeclarationTest1.xml"));
@@ -78,6 +82,8 @@ void XMLWriterTests::WriteElementStartTest1(Test& test)
     writer.writeXMLDeclaration();
     writer.writeElementStart("book");
     writer.writeElementEnd();
+
+    writer.close();
 
     ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest1.xml",
         "XMLWriterTests_WriteElementStartTest1.xml");

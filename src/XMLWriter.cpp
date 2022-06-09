@@ -19,6 +19,11 @@ void XMLWriter::create(const boost::filesystem::path& path, Error& error)
     m_file.create(path.string(), error);
 }
 
+void XMLWriter::close()
+{
+    m_file.close();
+}
+
 void XMLWriter::writeXMLDeclaration()
 {
     m_file.writeLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -29,7 +34,7 @@ void XMLWriter::writeElementStart(const std::string& name)
     m_file.write("<");
     m_file.write(name);
     m_openElements.push_back(name);
-    m_mode = Mode::elementStart;
+    m_mode = Mode::elementStartTagOpen;
 }
 
 void XMLWriter::writeElementEnd()
@@ -37,9 +42,16 @@ void XMLWriter::writeElementEnd()
     // TODO: handle errors
     switch (m_mode)
     {
-    case Mode::elementStart:
+    case Mode::elementStartTagOpen:
         // We have an empty element
         m_file.write(" />");
+        break;
+
+    case Mode::elementStartTagClosed:
+        // We have an element with some content and now we are closing it
+        m_file.write("</");
+        m_file.write(m_openElements.back());
+        m_file.write(">");
         break;
 
     default:
@@ -47,6 +59,27 @@ void XMLWriter::writeElementEnd()
         break;
     }
 
+    m_openElements.pop_back();
+    // TODO: what mode do we go back to?
+}
+
+void XMLWriter::writeText(const std::string& text)
+{
+    // TODO: handle errors
+    switch (m_mode)
+    {
+    case Mode::elementStartTagOpen:
+        // We have an unclosed start tag
+        m_file.write(">");
+        m_mode = Mode::elementStartTagClosed;
+        break;
+
+    default:
+        // TODO
+        break;
+    }
+
+    
     m_openElements.pop_back();
 }
 
