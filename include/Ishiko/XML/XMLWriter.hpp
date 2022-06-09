@@ -26,6 +26,7 @@ public:
     void writeXMLDeclaration();
     void writeElementStart(const std::string& name);
     void writeElementEnd();
+    void writeAttribute(const std::string& name, const std::string& value);
     void writeText(const std::string& text);
 
 private:

@@ -63,6 +63,23 @@ void XMLWriter::writeElementEnd()
     // TODO: what mode do we go back to?
 }
 
+void XMLWriter::writeAttribute(const std::string& name, const std::string& value)
+{
+    // TODO: handle errors
+    switch (m_mode)
+    {
+    default:
+        // TODO
+        break;
+    }
+
+    m_file.write(" ");
+    m_file.write(name);
+    m_file.write("=\"");
+    m_file.write(value);
+    m_file.write("\"");
+}
+
 void XMLWriter::writeText(const std::string& text)
 {
     // TODO: handle errors
