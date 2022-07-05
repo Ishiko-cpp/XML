@@ -157,9 +157,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\XMLEscapedStringTests.cpp" />
     <ClCompile Include="..\..\src\XMLWriterTests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\XMLEscapedStringTests.hpp" />
     <ClInclude Include="..\..\src\XMLWriterTests.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,6 +4,7 @@
     See https://github.com/ishiko-cpp/xml/blob/main/LICENSE.txt
 */
 
+#include "XMLEscapedStringTests.hpp"
 #include "XMLWriterTests.hpp"
 #include "Ishiko/XML/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
@@ -18,6 +19,7 @@ int main(int argc, char* argv[])
     theTestHarness.context().setReferenceDirectory("../../reference");
 
     TestSequence& theTests = theTestHarness.tests();
+    theTests.append<XMLEscapedStringTests>();
     theTests.append<XMLWriterTests>();
     
     return theTestHarness.run();
