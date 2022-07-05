@@ -83,9 +83,12 @@ ISHIKO_CPP_PUGIXML_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_PUGIXML)
 
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a: $(_builddir)IshikoXML_XMLWriter.o
-	$(AR) rc $@ $(_builddir)IshikoXML_XMLWriter.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,IshikoXML).a: $(_builddir)IshikoXML_XMLEscapedString.o $(_builddir)IshikoXML_XMLWriter.o
+	$(AR) rc $@ $(_builddir)IshikoXML_XMLEscapedString.o $(_builddir)IshikoXML_XMLWriter.o
 	$(RANLIB) $@
+
+$(_builddir)IshikoXML_XMLEscapedString.o: ../../src/XMLEscapedString.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLEscapedString.cpp
 
 $(_builddir)IshikoXML_XMLWriter.o: ../../src/XMLWriter.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLWriter.cpp

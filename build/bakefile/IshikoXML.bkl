@@ -37,13 +37,14 @@ library IshikoXML : IshikoFileSystem, IshikoErrors, pugixml, Boost
     headers
     {
         ../../include/Ishiko/XML.hpp
-
+        ../../include/Ishiko/XML/XMLEscapedString.hpp
         ../../include/Ishiko/XML/XMLWriter.hpp
         ../../include/Ishiko/XML/linkoptions.hpp
     }
 
     sources
     {
+        ../../src/XMLEscapedString.cpp
         ../../src/XMLWriter.cpp
     }
 }
