@@ -23,12 +23,14 @@ program IshikoXMLTests : IshikoXML, IshikoTestFrameworkCore
 
     headers
     {
+        ../../src/XMLEscapedStringTests.hpp
         ../../src/XMLWriterTests.hpp
     }
 
     sources
     {
         ../../src/main.cpp
+        ../../src/XMLEscapedStringTests.cpp
         ../../src/XMLWriterTests.cpp
     }
 }

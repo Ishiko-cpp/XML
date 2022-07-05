@@ -7,8 +7,8 @@
 #ifndef _ISHIKO_CPP_XML_HPP_
 #define _ISHIKO_CPP_XML_HPP_
 
-#include "XML/XMLWriter.hpp"
-
 #include "XML/linkoptions.hpp"
+#include "XML/XMLEscapedString.hpp"
+#include "XML/XMLWriter.hpp"
 
 #endif

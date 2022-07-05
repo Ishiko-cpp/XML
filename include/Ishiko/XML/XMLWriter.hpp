@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_CPP_XML_XMLWRITER_HPP_
 #define _ISHIKO_CPP_XML_XMLWRITER_HPP_
 
+#include "XMLEscapedString.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/Errors.hpp>
 #include <Ishiko/FileSystem.hpp>
@@ -27,7 +28,8 @@ public:
     void writeElementStart(const std::string& name);
     void writeElementEnd();
     void writeAttribute(const std::string& name, const std::string& value);
-    void writeText(const std::string& text);
+    void writeText(const std::string& unescapedText);
+    void writeText(const XMLEscapedString& text);
 
 private:
     enum class Mode
