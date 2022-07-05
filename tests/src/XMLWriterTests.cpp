@@ -14,8 +14,8 @@ XMLWriterTests::XMLWriterTests(const TestNumber& number, const TestContext& cont
     : TestSequence(number, "XMLWriter tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
-    append<FileComparisonTest>("create test 1", CreateTest1);
-    append<FileComparisonTest>("writeXMLDeclaration test 1", WriteXMLDeclarationTest1);
+    append<HeapAllocationErrorsTest>("create test 1", CreateTest1);
+    append<HeapAllocationErrorsTest>("writeXMLDeclaration test 1", WriteXMLDeclarationTest1);
     append<HeapAllocationErrorsTest>("writeElementStart test 1", WriteElementStartTest1);
     append<HeapAllocationErrorsTest>("writeElementStart test 2", WriteElementStartTest2);
     append<HeapAllocationErrorsTest>("writeElementStart test 3", WriteElementStartTest3);
@@ -34,34 +34,31 @@ void XMLWriterTests::ConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void XMLWriterTests::CreateTest1(FileComparisonTest& test)
+void XMLWriterTests::CreateTest1(Test& test)
 {
-    boost::filesystem::path outputPath = test.context().getTestOutputPath("XMLWriterTests_CreateTest1.xml");
-
+    const char* outputFileName = "XMLWriterTests_CreateTest1.xml";
+    
     XMLWriter writer;
 
     Error error;
-    writer.create(outputPath, error);
+    writer.create(test.context().getOutputPath(outputFileName), error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
     writer.close();
 
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.context().getReferenceDataPath("XMLWriterTests_CreateTest1.xml"));
-
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ(outputFileName);
     ISHIKO_TEST_PASS();
 }
 
-void XMLWriterTests::WriteXMLDeclarationTest1(FileComparisonTest& test)
+void XMLWriterTests::WriteXMLDeclarationTest1(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteXMLDeclarationTest1.xml");
+    const char* outputFileName = "XMLWriterTests_WriteXMLDeclarationTest1.xml";
 
     XMLWriter writer;
 
     Error error;
-    writer.create(outputPath, error);
+    writer.create(test.context().getOutputPath(outputFileName), error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
@@ -69,16 +66,13 @@ void XMLWriterTests::WriteXMLDeclarationTest1(FileComparisonTest& test)
 
     writer.close();
 
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.context().getReferenceDataPath("XMLWriterTests_WriteXMLDeclarationTest1.xml"));
-
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ(outputFileName);
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteElementStartTest1(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest1.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteElementStartTest1.xml");
 
     XMLWriter writer;
 
@@ -93,15 +87,13 @@ void XMLWriterTests::WriteElementStartTest1(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest1.xml",
-        "XMLWriterTests_WriteElementStartTest1.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteElementStartTest1.xml");
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteElementStartTest2(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest2.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteElementStartTest2.xml");
 
     XMLWriter writer;
 
@@ -117,15 +109,13 @@ void XMLWriterTests::WriteElementStartTest2(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest2.xml",
-        "XMLWriterTests_WriteElementStartTest2.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteElementStartTest2.xml");
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteElementStartTest3(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest3.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteElementStartTest3.xml");
 
     XMLWriter writer;
 
@@ -142,15 +132,13 @@ void XMLWriterTests::WriteElementStartTest3(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest3.xml",
-        "XMLWriterTests_WriteElementStartTest3.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteElementStartTest3.xml");
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteElementStartTest4(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest4.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteElementStartTest4.xml");
 
     XMLWriter writer;
 
@@ -169,15 +157,13 @@ void XMLWriterTests::WriteElementStartTest4(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest4.xml",
-        "XMLWriterTests_WriteElementStartTest4.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteElementStartTest4.xml");
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteElementStartTest5(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest5.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteElementStartTest5.xml");
 
     XMLWriter writer;
 
@@ -194,15 +180,13 @@ void XMLWriterTests::WriteElementStartTest5(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest5.xml",
-        "XMLWriterTests_WriteElementStartTest5.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteElementStartTest5.xml");
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteElementStartTest6(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest6.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteElementStartTest6.xml");
 
     XMLWriter writer;
 
@@ -221,15 +205,13 @@ void XMLWriterTests::WriteElementStartTest6(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest6.xml",
-        "XMLWriterTests_WriteElementStartTest6.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteElementStartTest6.xml");
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteElementStartTest7(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteElementStartTest7.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteElementStartTest7.xml");
 
     XMLWriter writer;
 
@@ -253,15 +235,13 @@ void XMLWriterTests::WriteElementStartTest7(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteElementStartTest7.xml",
-        "XMLWriterTests_WriteElementStartTest7.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteElementStartTest7.xml");
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteAttributeTest1(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteAttributeTest1.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteAttributeTest1.xml");
 
     XMLWriter writer;
 
@@ -277,15 +257,13 @@ void XMLWriterTests::WriteAttributeTest1(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteAttributeTest1.xml",
-        "XMLWriterTests_WriteAttributeTest1.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteAttributeTest1.xml");
     ISHIKO_TEST_PASS();
 }
 
 void XMLWriterTests::WriteAttributeTest2(Test& test)
 {
-    boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("XMLWriterTests_WriteAttributeTest2.xml");
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteAttributeTest2.xml");
 
     XMLWriter writer;
 
@@ -302,7 +280,6 @@ void XMLWriterTests::WriteAttributeTest2(Test& test)
 
     writer.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("XMLWriterTests_WriteAttributeTest2.xml",
-        "XMLWriterTests_WriteAttributeTest2.xml");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteAttributeTest2.xml");
     ISHIKO_TEST_PASS();
 }
