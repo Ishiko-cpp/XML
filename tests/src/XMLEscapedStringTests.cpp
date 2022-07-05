@@ -5,6 +5,7 @@
 */
 
 #include "XMLEscapedStringTests.hpp"
+#include "Ishiko/XML/XMLEscapedString.hpp"
 
 using namespace Ishiko;
 
@@ -16,4 +17,10 @@ XMLEscapedStringTests::XMLEscapedStringTests(const TestNumber& number, const Tes
 
 void XMLEscapedStringTests::ConstructorTest1(Test& test)
 {
+    XMLEscapedString escapedString;
+
+    ISHIKO_TEST_FAIL_IF_NEQ(escapedString.size(), 0);
+    ISHIKO_TEST_FAIL_IF_NEQ(escapedString.asEscapedString(), "");
+    ISHIKO_TEST_FAIL_IF_NEQ(escapedString.toUnescapedString(), "");
+    ISHIKO_TEST_PASS();
 }

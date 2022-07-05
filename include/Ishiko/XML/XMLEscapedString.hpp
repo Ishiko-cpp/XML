@@ -7,4 +7,26 @@
 #ifndef _ISHIKO_CPP_XML_XMLESCAPEDSTRING_HPP_
 #define _ISHIKO_CPP_XML_XMLESCAPEDSTRING_HPP_
 
+#include <string>
+
+namespace Ishiko
+{
+
+class XMLEscapedString
+{
+public:
+    XMLEscapedString() = default;
+    static XMLEscapedString FromUnescapedString(const char* str);
+
+    const size_t size() const noexcept;
+
+    const std::string& asEscapedString() const;
+    std::string toUnescapedString() const;
+
+private:
+    std::string m_escapedString;
+};
+
+}
+
 #endif
