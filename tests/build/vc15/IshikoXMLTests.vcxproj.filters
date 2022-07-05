@@ -17,12 +17,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\XMLEscapedStringTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\XMLWriterTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XMLEscapedStringTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XMLWriterTests.cpp">
