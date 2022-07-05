@@ -39,6 +39,11 @@ XMLEscapedString XMLEscapedString::FromUnescapedString(const char* str)
     return result;
 }
 
+XMLEscapedString XMLEscapedString::FromUnescapedString(const std::string& str)
+{
+    return FromUnescapedString(str.c_str());
+}
+
 const size_t XMLEscapedString::size() const noexcept
 {
     return m_escapedString.size();

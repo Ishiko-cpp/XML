@@ -6,8 +6,7 @@
 
 #include "XMLWriter.hpp"
 
-namespace Ishiko
-{
+using namespace Ishiko;
 
 XMLWriter::XMLWriter()
     : m_mode(Mode::initial)
@@ -101,7 +100,13 @@ void XMLWriter::writeAttribute(const std::string& name, const std::string& value
     m_file.write("\"");
 }
 
-void XMLWriter::writeText(const std::string& text)
+void XMLWriter::writeText(const std::string& unescapedText)
+{
+    XMLEscapedString escapedText = XMLEscapedString::FromUnescapedString(unescapedText);
+    writeText(escapedText);
+}
+
+void XMLWriter::writeText(const XMLEscapedString& text)
 {
     // TODO: handle errors
     switch (m_mode)
@@ -117,7 +122,5 @@ void XMLWriter::writeText(const std::string& text)
         break;
     }
 
-    m_file.write(text);
-}
-
+    m_file.write(text.asEscapedString());
 }

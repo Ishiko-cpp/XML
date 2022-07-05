@@ -17,6 +17,7 @@ class XMLEscapedString
 public:
     XMLEscapedString() = default;
     static XMLEscapedString FromUnescapedString(const char* str);
+    static XMLEscapedString FromUnescapedString(const std::string& str);
 
     const size_t size() const noexcept;
 
