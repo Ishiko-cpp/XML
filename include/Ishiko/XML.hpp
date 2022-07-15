@@ -1,7 +1,7 @@
 /*
     Copyright (c) 2021-2022 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/ishiko-cpp/xml/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/xml/blob/main/LICENSE.txt
 */
 
 #ifndef _ISHIKO_CPP_XML_HPP_
@@ -9,6 +9,7 @@
 
 #include "XML/linkoptions.hpp"
 #include "XML/XMLEscapedString.hpp"
+#include "XML/XMLPushParser.hpp"
 #include "XML/XMLWriter.hpp"
 
 #endif
