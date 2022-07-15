@@ -38,6 +38,7 @@ library IshikoXML : IshikoFileSystem, IshikoErrors, pugixml, Boost
     {
         ../../include/Ishiko/XML.hpp
         ../../include/Ishiko/XML/XMLEscapedString.hpp
+        ../../include/Ishiko/XML/XMLPushParser.hpp
         ../../include/Ishiko/XML/XMLWriter.hpp
         ../../include/Ishiko/XML/linkoptions.hpp
     }
@@ -45,6 +46,7 @@ library IshikoXML : IshikoFileSystem, IshikoErrors, pugixml, Boost
     sources
     {
         ../../src/XMLEscapedString.cpp
+        ../../src/XMLPushParser.cpp
         ../../src/XMLWriter.cpp
     }
 }
