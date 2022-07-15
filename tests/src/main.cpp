@@ -5,6 +5,7 @@
 */
 
 #include "XMLEscapedStringTests.hpp"
+#include "XMLPushParserTests.hpp"
 #include "XMLWriterTests.hpp"
 #include "Ishiko/XML/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
@@ -20,6 +21,7 @@ int main(int argc, char* argv[])
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<XMLEscapedStringTests>();
+    theTests.append<XMLPushParserTests>();
     theTests.append<XMLWriterTests>();
     
     return theTestHarness.run();
