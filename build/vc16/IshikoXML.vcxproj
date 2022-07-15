@@ -151,11 +151,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\XMLEscapedString.cpp" />
+    <ClCompile Include="..\..\src\XMLPushParser.cpp" />
     <ClCompile Include="..\..\src\XMLWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\XML.hpp" />
     <ClInclude Include="..\..\include\Ishiko\XML\XMLEscapedString.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\XML\XMLPushParser.hpp" />
     <ClInclude Include="..\..\include\Ishiko\XML\XMLWriter.hpp" />
     <ClInclude Include="..\..\include\Ishiko\XML\linkoptions.hpp" />
   </ItemGroup>

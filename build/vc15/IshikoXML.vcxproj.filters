@@ -23,6 +23,9 @@
     <ClInclude Include="..\..\include\Ishiko\XML\XMLEscapedString.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\XML\XMLPushParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\XML\XMLWriter.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -32,6 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\XMLEscapedString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\XMLPushParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\XMLWriter.cpp">
