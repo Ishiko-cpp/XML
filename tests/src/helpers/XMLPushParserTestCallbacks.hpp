@@ -9,11 +9,17 @@
 
 #include "Ishiko/XML/XMLPushParser.hpp"
 #include <boost/filesystem.hpp>
+#include <vector>
 
 class XMLPushParserTestCallbacks : public Ishiko::XMLPushParser::Callbacks
 {
 public:
+    void onXMLDeclaration() override;
+
     void exportToXML(const boost::filesystem::path& path) const;
+
+private:
+    std::vector<std::string> m_events;
 };
 
 #endif
