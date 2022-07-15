@@ -5,7 +5,14 @@
 */
 
 #include "XMLPushParserTestCallbacks.hpp"
+#include "Ishiko/XML/XMLWriter.hpp"
+#include <Ishiko/Errors.hpp>
 
 void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path) const
 {
+    Ishiko::XMLWriter xmlWriter;
+    // TODO: handle errors
+    Ishiko::Error error;
+    xmlWriter.create(path, error);
+    xmlWriter.writeXMLDeclaration();
 }
