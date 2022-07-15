@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoXML");
 
+    theTestHarness.context().setDataDirectory("../../data");
     theTestHarness.context().setOutputDirectory("../../output");
     theTestHarness.context().setReferenceDirectory("../../reference");
 
