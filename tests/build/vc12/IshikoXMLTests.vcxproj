@@ -160,11 +160,13 @@
     <ClCompile Include="..\..\src\XMLEscapedStringTests.cpp" />
     <ClCompile Include="..\..\src\XMLPushParserTests.cpp" />
     <ClCompile Include="..\..\src\XMLWriterTests.cpp" />
+    <ClCompile Include="..\..\src\helpers\XMLPushParserTestCallbacks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\XMLEscapedStringTests.hpp" />
     <ClInclude Include="..\..\src\XMLPushParserTests.hpp" />
     <ClInclude Include="..\..\src\XMLWriterTests.hpp" />
+    <ClInclude Include="..\..\src\helpers\XMLPushParserTestCallbacks.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,3 +5,15 @@
 */
 
 #include "XMLPushParser.hpp"
+
+using namespace Ishiko;
+
+XMLPushParser::XMLPushParser(Callbacks& callbacks)
+    : m_callbacks(callbacks)
+{
+}
+
+bool XMLPushParser::onData(boost::string_view data, bool eod)
+{
+    return false;
+}

@@ -26,6 +26,7 @@ program IshikoXMLTests : IshikoXML, IshikoTestFrameworkCore
         ../../src/XMLEscapedStringTests.hpp
         ../../src/XMLPushParserTests.hpp
         ../../src/XMLWriterTests.hpp
+        ../../src/helpers/XMLPushParserTestCallbacks.hpp
     }
 
     sources
@@ -34,5 +35,6 @@ program IshikoXMLTests : IshikoXML, IshikoTestFrameworkCore
         ../../src/XMLEscapedStringTests.cpp
         ../../src/XMLPushParserTests.cpp
         ../../src/XMLWriterTests.cpp
+        ../../src/helpers/XMLPushParserTestCallbacks.cpp
     }
 }

@@ -5,6 +5,7 @@
 */
 
 #include "XMLPushParserTests.hpp"
+#include "helpers/XMLPushParserTestCallbacks.hpp"
 #include "Ishiko/XML/XMLPushParser.hpp"
 
 using namespace Ishiko;
@@ -17,7 +18,8 @@ XMLPushParserTests::XMLPushParserTests(const TestNumber& number, const TestConte
 
 void XMLPushParserTests::ConstructorTest1(Test& test)
 {
-    XMLPushParser parser;
+    XMLPushParserTestCallbacks callbacks;
+    XMLPushParser parser(callbacks);
 
     ISHIKO_TEST_PASS();
 }
