@@ -22,8 +22,8 @@ int main(int argc, char* argv[])
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<XMLEscapedStringTests>();
-    theTests.append<XMLPushParserTests>();
     theTests.append<XMLWriterTests>();
+    theTests.append<XMLPushParserTests>();
     
     return theTestHarness.run();
 }

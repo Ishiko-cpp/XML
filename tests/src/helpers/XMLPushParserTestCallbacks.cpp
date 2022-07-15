@@ -5,3 +5,7 @@
 */
 
 #include "XMLPushParserTestCallbacks.hpp"
+
+void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path) const
+{
+}

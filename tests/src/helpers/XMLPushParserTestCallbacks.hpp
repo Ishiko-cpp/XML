@@ -8,9 +8,12 @@
 #define _ISHIKO_XML_TESTS_HELPERS_XMLPUSHPARSERTESTCALLBACKS_HPP_
 
 #include "Ishiko/XML/XMLPushParser.hpp"
+#include <boost/filesystem.hpp>
 
 class XMLPushParserTestCallbacks : public Ishiko::XMLPushParser::Callbacks
 {
+public:
+    void exportToXML(const boost::filesystem::path& path) const;
 };
 
 #endif
