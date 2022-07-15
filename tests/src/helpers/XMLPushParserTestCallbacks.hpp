@@ -15,6 +15,8 @@ class XMLPushParserTestCallbacks : public Ishiko::XMLPushParser::Callbacks
 {
 public:
     void onXMLDeclaration() override;
+    void onStartTag() override;
+    void onEndTag() override;
 
     void exportToXML(const boost::filesystem::path& path) const;
 

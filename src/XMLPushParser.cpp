@@ -12,11 +12,7 @@ void XMLPushParser::Callbacks::onXMLDeclaration()
 {
 }
 
-void XMLPushParser::Callbacks::onStartTagBegin()
-{
-}
-
-void XMLPushParser::Callbacks::onStartTagEnd()
+void XMLPushParser::Callbacks::onStartTag()
 {
 }
 
@@ -69,7 +65,8 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
                 if (*current == '>')
                 {
                     // TODO
-                    //m_callbacks.();
+                    m_callbacks.onStartTag();
+                    m_callbacks.onEndTag();
                     break;
                 }
                 ++current;

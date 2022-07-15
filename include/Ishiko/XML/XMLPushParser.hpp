@@ -23,8 +23,7 @@ public:
         virtual ~Callbacks() = default;
 
         virtual void onXMLDeclaration();
-        virtual void onStartTagBegin();
-        virtual void onStartTagEnd();
+        virtual void onStartTag();
         virtual void onEndTag();
     };
 

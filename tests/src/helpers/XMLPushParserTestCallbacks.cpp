@@ -13,6 +13,16 @@ void XMLPushParserTestCallbacks::onXMLDeclaration()
     m_events.emplace_back("onXMLDeclaration");
 }
 
+void XMLPushParserTestCallbacks::onStartTag()
+{
+    m_events.emplace_back("onStartTag");
+}
+
+void XMLPushParserTestCallbacks::onEndTag()
+{
+    m_events.emplace_back("onEndTag");
+}
+
 void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path) const
 {
     Ishiko::XMLWriter xmlWriter;
