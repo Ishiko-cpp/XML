@@ -7,4 +7,13 @@
 #ifndef _ISHIKO_CPP_XML_XMLPUSHPARSER_HPP_
 #define _ISHIKO_CPP_XML_XMLPUSHPARSER_HPP_
 
+namespace Ishiko
+{
+
+class XMLPushParser
+{
+};
+
+}
+
 #endif
