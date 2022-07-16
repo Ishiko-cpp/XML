@@ -23,8 +23,10 @@ public:
         virtual ~Callbacks() = default;
 
         virtual void onXMLDeclaration();
-        virtual void onStartTag();
+        virtual void onStartTag(boost::string_view name);
         virtual void onEndTag();
+        // TODO: this receives the characters still escaped but with any '\r' removed or substituted
+        virtual void onCharacterData(boost::string_view data);
     };
 
     XMLPushParser(Callbacks& callbacks);

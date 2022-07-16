@@ -14,6 +14,7 @@ XMLEscapedStringTests::XMLEscapedStringTests(const TestNumber& number, const Tes
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("FromUnescapedString test 1", FromUnescapedStringTest1);
+    append<HeapAllocationErrorsTest>("FromUnescapedString test 2", FromUnescapedStringTest2);
 }
 
 void XMLEscapedStringTests::ConstructorTest1(Test& test)
@@ -33,5 +34,15 @@ void XMLEscapedStringTests::FromUnescapedStringTest1(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(escapedString.size(), 11);
     ISHIKO_TEST_FAIL_IF_NEQ(escapedString.asEscapedString(), "&lt;tag&gt;");
     ISHIKO_TEST_FAIL_IF_NEQ(escapedString.toUnescapedString(), "<tag>");
+    ISHIKO_TEST_PASS();
+}
+
+void XMLEscapedStringTests::FromUnescapedStringTest2(Test& test)
+{
+    XMLEscapedString escapedString = XMLEscapedString::FromUnescapedString("<tag>\r\n", "\r\n");
+
+    ISHIKO_TEST_FAIL_IF_NEQ(escapedString.size(), 21);
+    ISHIKO_TEST_FAIL_IF_NEQ(escapedString.asEscapedString(), "&lt;tag&gt;&#13;&#10;");
+    ISHIKO_TEST_FAIL_IF_NEQ(escapedString.toUnescapedString(), "<tag>\r\n");
     ISHIKO_TEST_PASS();
 }

@@ -9,21 +9,37 @@
 #include "XMLWriterTests.hpp"
 #include "Ishiko/XML/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
+#include <exception>
 
 using namespace Ishiko;
 
 int main(int argc, char* argv[])
 {
-    TestHarness theTestHarness("IshikoXML");
+    try
+    {
+        TestHarness::CommandLineSpecification commandLineSpec;
+        commandLineSpec.setDefaultValue("context.data", "../../data");
+        commandLineSpec.setDefaultValue("context.output", "../../output");
+        commandLineSpec.setDefaultValue("context.reference", "../../reference");
 
-    theTestHarness.context().setDataDirectory("../../data");
-    theTestHarness.context().setOutputDirectory("../../output");
-    theTestHarness.context().setReferenceDirectory("../../reference");
+        Configuration configuration = commandLineSpec.createDefaultConfiguration();
+        CommandLineParser::parse(commandLineSpec, argc, argv, configuration);
 
-    TestSequence& theTests = theTestHarness.tests();
-    theTests.append<XMLEscapedStringTests>();
-    theTests.append<XMLWriterTests>();
-    theTests.append<XMLPushParserTests>();
-    
-    return theTestHarness.run();
+        TestHarness theTestHarness("Ishiko/C++ XML Library Tests", configuration);
+
+        TestSequence& theTests = theTestHarness.tests();
+        theTests.append<XMLEscapedStringTests>();
+        theTests.append<XMLWriterTests>();
+        theTests.append<XMLPushParserTests>();
+
+        return theTestHarness.run();
+    }
+    catch (const std::exception& e)
+    {
+        return TestApplicationReturnCode::exception;
+    }
+    catch (...)
+    {
+        return TestApplicationReturnCode::exception;
+    }
 }
