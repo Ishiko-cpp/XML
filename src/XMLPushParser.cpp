@@ -75,27 +75,92 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
             m_parsingModeStack.push_back(ParsingMode::name);
             break;
 
-        case ParsingMode::content:
-            // TODO: we dont't cope with content yet
-            m_parsingModeStack.back() = ParsingMode::endTag;
+        case ParsingMode::endTag:
+            // TODO: validate we have '>'
+            m_callbacks.onEndTag();
+            ++current;
+            m_parsingModeStack.pop_back();
+            m_parsingModeStack.pop_back();
+            if (m_parsingModeStack.back() == ParsingMode::document)
+            {
+                // TODO: incorrect there could be Misc and PIs after root element
+                m_parsingModeStack.back() = ParsingMode::end;
+            }
+            else if (m_parsingModeStack.back() == ParsingMode::content)
+            {
+                // Nothing to do, just proceed
+            }
+            else
+            {
+                // TODO
+            }
             break;
 
-        case ParsingMode::endTag:
-            m_callbacks.onEndTag();
-            // TODO: what do I transition to?
-            m_parsingModeStack.back() = ParsingMode::end;
+        case ParsingMode::content:
+            if (*current == '<')
+            {
+                m_parsingModeStack.push_back(ParsingMode::leftAngleBracket);
+                ++current;
+            }
+            else
+            {
+                // TODO: validate that the char is actually a valid char to start charData
+                m_parsingModeStack.push_back(ParsingMode::characterData);
+            }
+            break;
+
+        case ParsingMode::characterData:
+            while (current < end)
+            {
+                if (*current == '<')
+                {
+                    // TODO
+                    break;
+                }
+                ++current;
+            }
+            if (current == end)
+            {
+                m_fragmentedData.append(previous, (current - previous));
+            }
+            else
+            {
+                m_parsingModeStack.pop_back();
+            }
             break;
 
         case ParsingMode::leftAngleBracket:
+            m_parsingModeStack.pop_back();
             // TODO: handle other stuff that starts with '<'
-            m_parsingModeStack.back() = ParsingMode::element;
+            if (m_parsingModeStack.back() == ParsingMode::document)
+            {
+                m_parsingModeStack.push_back(ParsingMode::element);
+            }
+            else if (m_parsingModeStack.back() == ParsingMode::content)
+            {
+                if (*current == '/')
+                {
+                    // TODO: validate state
+                    m_parsingModeStack.back() = ParsingMode::endTag;
+                    ++current;
+                }
+                else
+                {
+                    m_parsingModeStack.push_back(ParsingMode::element);
+                }
+            }
+            else
+            {
+                // TODO
+            }
             break;
 
         case ParsingMode::name:
             while (current < end)
             {
                 // TODO: fix isNameChar
-                bool isNameChar = ((*current >= 'a') && (*current <= 'z'));
+                bool isNameChar = (((*current >= 'a') && (*current <= 'z'))
+                    || ((*current >= '0') && (*current <= '9')));
                 if (!isNameChar)
                 {
                     // TODO: partial
@@ -154,7 +219,6 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
                 if (m_parsingModeStack.back() == ParsingMode::prolog)
                 {
                     // TODO : verify state, cope with additional stuff in the prolog
-                    m_parsingModeStack.pop_back();
                     // TODO: this is a hack as it could be any character, need a specific "unknown stuff" state
                     m_parsingModeStack.back() = ParsingMode::leftAngleBracket;
                     ++current;
@@ -164,7 +228,7 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
                     // TODO: we need to cope with attributes
                     if (*current == '>')
                     {
-                        m_parsingModeStack.back() == ParsingMode::content;
+                        m_parsingModeStack.back() = ParsingMode::content;
                         ++current;
                     }
                     else if (*current == '/')
