@@ -209,7 +209,6 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
 
         case ParsingMode::forwardSlash:
             // TODO: cope with something else than "/>"
-            ++current;
             // TODO: check current state and don't assume this is a closing "/>"
             m_parsingModeStack.pop_back();
             m_parsingModeStack.back() = ParsingMode::endTag;
