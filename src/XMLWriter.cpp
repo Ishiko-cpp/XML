@@ -75,7 +75,8 @@ void XMLWriter::writeElementEnd()
     m_openElements.pop_back();
     if (m_openElements.empty())
     {
-        m_mode = Mode::initial; // TODO: better state
+        m_mode = Mode::rootClosed;
+        m_file.write("\n");
     }
     else
     {
