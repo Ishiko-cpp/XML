@@ -36,7 +36,8 @@ private:
     {
         initial,
         elementStartTagOpen,
-        elementStartTagClosed
+        elementStartTagClosed,
+        rootClosed
     };
 
     TextFile m_file;
