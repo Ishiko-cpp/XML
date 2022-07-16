@@ -118,7 +118,13 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
         case ParsingMode::characterData:
             while (current < end)
             {
-                if (*current == '<')
+                if (*current == '\r')
+                {
+                    // TODO: this is not good enough as we need to replace it with '\n' if there is no '\n' following
+                    m_fragmentedData.append(previous, current - previous);
+                    previous = (current + 1);
+                }
+                else if (*current == '<')
                 {
                     if (m_fragmentedData.empty() && ((current - previous) > 0))
                     {
@@ -126,7 +132,9 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
                     }
                     else
                     {
-                        // TODO
+                        m_fragmentedData.append(previous, current - previous);
+                        m_callbacks.onCharacterData(m_fragmentedData);
+                        m_fragmentedData.clear();
                     }
                     break;
                 }

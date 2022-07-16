@@ -9,7 +9,7 @@
     </callback>
     <callback>
         <name>onCharacterData</name>
-        <argument>&#13;&#10;    </argument>
+        <argument>&#10;    </argument>
     </callback>
     <callback>
         <name>onStartTag</name>
