@@ -44,6 +44,57 @@ XMLEscapedString XMLEscapedString::FromUnescapedString(const std::string& str)
     return FromUnescapedString(str.c_str());
 }
 
+XMLEscapedString XMLEscapedString::FromUnescapedString(const char* str, const char* additionalCharactersToEscape)
+{
+    XMLEscapedString result;
+    const char* ptr = str;
+    while (*ptr != '\0')
+    {
+        switch (*ptr)
+        {
+        case '&':
+            result.m_escapedString.append("&amp;");
+            break;
+
+        case '<':
+            result.m_escapedString.append("&lt;");
+            break;
+
+        case '>':
+            result.m_escapedString.append("&gt;");
+            break;
+
+        default:
+            {
+                bool escape = false;
+                for (size_t i = 0; additionalCharactersToEscape[i] != 0; ++i)
+                {
+                    if (*ptr == additionalCharactersToEscape[i])
+                    {
+                        escape = true;
+                        break;
+                    }
+                }
+                if (escape)
+                {
+                    std::string escapeSequence = "&#";
+                    escapeSequence.append(std::to_string(*ptr));
+                    escapeSequence.push_back(';');
+                    result.m_escapedString.append(escapeSequence);
+                }
+                else
+                {
+                    // TODO: would it be faster to append a chunk?
+                    result.m_escapedString.push_back(*ptr);
+                }
+            }
+            break;
+        }
+        ++ptr;
+    }
+    return result;
+}
+
 const size_t XMLEscapedString::size() const noexcept
 {
     return m_escapedString.size();
@@ -82,6 +133,12 @@ std::string XMLEscapedString::toUnescapedString() const
                 else if (std::equal((it + 1), it2, "gt"))
                 {
                     result.push_back('>');
+                }
+                else
+                {
+                    // TODO: more validation this is a number and better perf
+                    std::string s((it + 2), it2);
+                    result.push_back(atoi(s.c_str()));
                 }
             }
             else
