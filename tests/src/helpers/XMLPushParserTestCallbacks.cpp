@@ -31,13 +31,24 @@ void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path
     xmlWriter.create(path, error);
     xmlWriter.writeXMLDeclaration();
     xmlWriter.writeElementStart("events");
+    xmlWriter.increaseIndentation();
     for (const std::string& name : m_events)
     {
+        xmlWriter.writeNewlineAndIndentation();
+
         xmlWriter.writeElementStart("callback");
+        xmlWriter.increaseIndentation();
+        xmlWriter.writeNewlineAndIndentation();
+
         xmlWriter.writeElementStart("name");
         xmlWriter.writeText(name);
         xmlWriter.writeElementEnd();
+
+        xmlWriter.decreaseIndentation();
+        xmlWriter.writeNewlineAndIndentation();
         xmlWriter.writeElementEnd();
     }
+    xmlWriter.decreaseIndentation();
+    xmlWriter.writeNewlineAndIndentation();
     xmlWriter.writeElementEnd();
 }
