@@ -31,6 +31,10 @@ public:
     void writeText(const std::string& unescapedText);
     void writeText(const XMLEscapedString& text);
 
+    void writeNewlineAndIndentation();
+    void increaseIndentation();
+    void decreaseIndentation();
+
 private:
     enum class Mode
     {
@@ -42,6 +46,7 @@ private:
 
     TextFile m_file;
     Mode m_mode;
+    std::string m_indentation;
     std::vector<std::string> m_openElements;
 };
 
