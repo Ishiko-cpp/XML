@@ -84,7 +84,13 @@ void XMLWriter::writeElementEnd()
     }
 }
 
-void XMLWriter::writeAttribute(const std::string& name, const std::string& value)
+void XMLWriter::writeAttribute(const std::string& name, const std::string& unescapedValue)
+{
+    XMLEscapedString escapedValue = XMLEscapedString::FromUnescapedString(unescapedValue);
+    writeAttribute(name, escapedValue);
+}
+
+void XMLWriter::writeAttribute(const std::string& name, const XMLEscapedString& value)
 {
     // TODO: handle errors
     switch (m_mode)
@@ -97,7 +103,7 @@ void XMLWriter::writeAttribute(const std::string& name, const std::string& value
     m_file.write(" ");
     m_file.write(name);
     m_file.write("=\"");
-    m_file.write(value);
+    m_file.write(value.asEscapedString());
     m_file.write("\"");
 }
 
