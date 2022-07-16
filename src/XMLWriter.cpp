@@ -125,3 +125,34 @@ void XMLWriter::writeText(const XMLEscapedString& text)
 
     m_file.write(text.asEscapedString());
 }
+
+void XMLWriter::writeNewlineAndIndentation()
+{
+    // TODO: handle errors
+    switch (m_mode)
+    {
+    case Mode::elementStartTagOpen:
+        // We have an unclosed start tag
+        m_file.write(">");
+        m_mode = Mode::elementStartTagClosed;
+        break;
+
+    default:
+        // TODO
+        break;
+    }
+
+    m_file.write("\n");
+    m_file.write(m_indentation);
+}
+
+void XMLWriter::increaseIndentation()
+{
+    m_indentation.append("    ");
+}
+
+void XMLWriter::decreaseIndentation()
+{
+    // TODO: error or exception if empty
+    m_indentation.erase(m_indentation.end() - 4, m_indentation.end());
+}
