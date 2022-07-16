@@ -28,7 +28,7 @@ void XMLPushParserTests::ConstructorTest1(Test& test)
 
 void XMLPushParserTests::OnDataTest1(Test& test)
 {
-    boost::filesystem::path inputPath = test.context().getDataPath("root.xml");
+    boost::filesystem::path inputPath = test.context().getDataPath("root_only.xml");
     std::string xmlData = FileSystem::ReadFile(inputPath);
 
     XMLPushParserTestCallbacks callbacks;
