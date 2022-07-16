@@ -34,8 +34,17 @@ public:
 private:
     enum class ParsingMode
     {
+        document,
+        prolog,
         xmlDeclaration,
+        element,
         startTag,
+        endTag,
+        content,
+        characterData,
+        leftAngleBracket,
+        name,
+        forwardSlash,
         whitespace,
         end
     };

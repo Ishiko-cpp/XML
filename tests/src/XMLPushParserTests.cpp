@@ -16,6 +16,7 @@ XMLPushParserTests::XMLPushParserTests(const TestNumber& number, const TestConte
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("onData test 1", OnDataTest1);
+    append<HeapAllocationErrorsTest>("onData test 2", OnDataTest2);
 }
 
 void XMLPushParserTests::ConstructorTest1(Test& test)
@@ -28,7 +29,7 @@ void XMLPushParserTests::ConstructorTest1(Test& test)
 
 void XMLPushParserTests::OnDataTest1(Test& test)
 {
-    boost::filesystem::path inputPath = test.context().getDataPath("root.xml");
+    boost::filesystem::path inputPath = test.context().getDataPath("root_only.xml");
     std::string xmlData = FileSystem::ReadFile(inputPath);
 
     XMLPushParserTestCallbacks callbacks;
@@ -37,6 +38,24 @@ void XMLPushParserTests::OnDataTest1(Test& test)
     bool complete = parser.onData(xmlData, true);
 
     const char* outputFileName = "XMLPushParserTests_OnDataTest1.xml";
+    callbacks.exportToXML(test.context().getOutputPath(outputFileName));
+
+    ISHIKO_TEST_FAIL_IF_NOT(complete);
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ(outputFileName);
+    ISHIKO_TEST_PASS();
+}
+
+void XMLPushParserTests::OnDataTest2(Test& test)
+{
+    boost::filesystem::path inputPath = test.context().getDataPath("one_element.xml");
+    std::string xmlData = FileSystem::ReadFile(inputPath);
+
+    XMLPushParserTestCallbacks callbacks;
+    XMLPushParser parser(callbacks);
+
+    bool complete = parser.onData(xmlData, true);
+
+    const char* outputFileName = "XMLPushParserTests_OnDataTest2.xml";
     callbacks.exportToXML(test.context().getOutputPath(outputFileName));
 
     ISHIKO_TEST_FAIL_IF_NOT(complete);
