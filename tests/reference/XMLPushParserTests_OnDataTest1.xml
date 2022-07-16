@@ -5,6 +5,7 @@
     </callback>
     <callback>
         <name>onStartTag</name>
+        <argument>root</argument>
     </callback>
     <callback>
         <name>onEndTag</name>

@@ -10,17 +10,17 @@
 
 void XMLPushParserTestCallbacks::onXMLDeclaration()
 {
-    m_events.emplace_back("onXMLDeclaration");
+    m_events.emplace_back("onXMLDeclaration", "");
 }
 
-void XMLPushParserTestCallbacks::onStartTag()
+void XMLPushParserTestCallbacks::onStartTag(boost::string_view name)
 {
-    m_events.emplace_back("onStartTag");
+    m_events.emplace_back("onStartTag", name);
 }
 
 void XMLPushParserTestCallbacks::onEndTag()
 {
-    m_events.emplace_back("onEndTag");
+    m_events.emplace_back("onEndTag", "");
 }
 
 void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path) const
@@ -32,7 +32,7 @@ void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path
     xmlWriter.writeXMLDeclaration();
     xmlWriter.writeElementStart("events");
     xmlWriter.increaseIndentation();
-    for (const std::string& name : m_events)
+    for (const std::pair<std::string, std::string>& e : m_events)
     {
         xmlWriter.writeNewlineAndIndentation();
 
@@ -41,8 +41,15 @@ void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path
         xmlWriter.writeNewlineAndIndentation();
 
         xmlWriter.writeElementStart("name");
-        xmlWriter.writeText(name);
+        xmlWriter.writeText(e.first);
         xmlWriter.writeElementEnd();
+        if (!e.second.empty())
+        {
+            xmlWriter.writeNewlineAndIndentation();
+            xmlWriter.writeElementStart("argument");
+            xmlWriter.writeText(e.second);
+            xmlWriter.writeElementEnd();
+        }
 
         xmlWriter.decreaseIndentation();
         xmlWriter.writeNewlineAndIndentation();

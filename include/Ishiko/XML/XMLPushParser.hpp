@@ -23,7 +23,7 @@ public:
         virtual ~Callbacks() = default;
 
         virtual void onXMLDeclaration();
-        virtual void onStartTag();
+        virtual void onStartTag(boost::string_view name);
         virtual void onEndTag();
     };
 

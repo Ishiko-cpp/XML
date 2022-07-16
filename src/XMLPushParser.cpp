@@ -12,7 +12,7 @@ void XMLPushParser::Callbacks::onXMLDeclaration()
 {
 }
 
-void XMLPushParser::Callbacks::onStartTag()
+void XMLPushParser::Callbacks::onStartTag(boost::string_view name)
 {
 }
 
@@ -72,6 +72,7 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
             break;
 
         case ParsingMode::startTag:
+            previous = current;
             m_parsingModeStack.push_back(ParsingMode::name);
             break;
 
@@ -163,8 +164,14 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
                     || ((*current >= '0') && (*current <= '9')));
                 if (!isNameChar)
                 {
-                    // TODO: partial
-                    m_callbacks.onStartTag();
+                    if (m_fragmentedData.empty() && ((current - previous) > 0))
+                    {
+                        m_callbacks.onStartTag(boost::string_view(previous, (current - previous)));
+                    }
+                    else
+                    {
+                        // TODO
+                    }
                     break;
                 }
                 ++current;

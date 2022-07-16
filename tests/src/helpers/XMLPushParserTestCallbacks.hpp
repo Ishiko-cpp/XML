@@ -9,19 +9,21 @@
 
 #include "Ishiko/XML/XMLPushParser.hpp"
 #include <boost/filesystem.hpp>
+#include <boost/utility/string_view.hpp>
+#include <utility>
 #include <vector>
 
 class XMLPushParserTestCallbacks : public Ishiko::XMLPushParser::Callbacks
 {
 public:
     void onXMLDeclaration() override;
-    void onStartTag() override;
+    void onStartTag(boost::string_view name) override;
     void onEndTag() override;
 
     void exportToXML(const boost::filesystem::path& path) const;
 
 private:
-    std::vector<std::string> m_events;
+    std::vector<std::pair<std::string, std::string>> m_events;
 };
 
 #endif
