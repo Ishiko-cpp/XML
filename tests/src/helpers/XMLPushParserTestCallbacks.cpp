@@ -32,9 +32,10 @@ void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path
     xmlWriter.writeXMLDeclaration();
     xmlWriter.writeElementStart("events");
     xmlWriter.increaseIndentation();
-    xmlWriter.writeNewlineAndIndentation();
     for (const std::string& name : m_events)
     {
+        xmlWriter.writeNewlineAndIndentation();
+
         xmlWriter.writeElementStart("callback");
         xmlWriter.increaseIndentation();
         xmlWriter.writeNewlineAndIndentation();
@@ -44,8 +45,10 @@ void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path
         xmlWriter.writeElementEnd();
 
         xmlWriter.decreaseIndentation();
+        xmlWriter.writeNewlineAndIndentation();
         xmlWriter.writeElementEnd();
     }
     xmlWriter.decreaseIndentation();
+    xmlWriter.writeNewlineAndIndentation();
     xmlWriter.writeElementEnd();
 }

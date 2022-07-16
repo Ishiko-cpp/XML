@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <events>
     <callback>
-        <name>onXMLDeclaration</name></callback><callback>
-        <name>onStartTag</name></callback><callback>
-        <name>onStartTag</name></callback><callback>
-        <name>onEndTag</name></callback><callback>
-        <name>onEndTag</name></callback></events>
+        <name>onXMLDeclaration</name>
+    </callback>
+    <callback>
+        <name>onStartTag</name>
+    </callback>
+    <callback>
+        <name>onStartTag</name>
+    </callback>
+    <callback>
+        <name>onEndTag</name>
+    </callback>
+    <callback>
+        <name>onEndTag</name>
+    </callback>
+</events>
