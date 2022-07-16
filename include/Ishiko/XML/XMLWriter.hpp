@@ -27,7 +27,8 @@ public:
     void writeXMLDeclaration();
     void writeElementStart(const std::string& name);
     void writeElementEnd();
-    void writeAttribute(const std::string& name, const std::string& value);
+    void writeAttribute(const std::string& name, const std::string& unescapedValue);
+    void writeAttribute(const std::string& name, const XMLEscapedString& value);
     void writeText(const std::string& unescapedText);
     void writeText(const XMLEscapedString& text);
 
