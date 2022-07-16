@@ -5,12 +5,22 @@
     </callback>
     <callback>
         <name>onStartTag</name>
+        <argument>root</argument>
+    </callback>
+    <callback>
+        <name>onCharacterData</name>
+        <argument>&#10;    </argument>
     </callback>
     <callback>
         <name>onStartTag</name>
+        <argument>element1</argument>
     </callback>
     <callback>
         <name>onEndTag</name>
+    </callback>
+    <callback>
+        <name>onCharacterData</name>
+        <argument>&#10;</argument>
     </callback>
     <callback>
         <name>onEndTag</name>

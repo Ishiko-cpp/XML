@@ -12,11 +12,15 @@ void XMLPushParser::Callbacks::onXMLDeclaration()
 {
 }
 
-void XMLPushParser::Callbacks::onStartTag()
+void XMLPushParser::Callbacks::onStartTag(boost::string_view name)
 {
 }
 
 void XMLPushParser::Callbacks::onEndTag()
+{
+}
+
+void XMLPushParser::Callbacks::onCharacterData(boost::string_view data)
 {
 }
 
@@ -72,6 +76,7 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
             break;
 
         case ParsingMode::startTag:
+            previous = current;
             m_parsingModeStack.push_back(ParsingMode::name);
             break;
 
@@ -106,15 +111,31 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
             {
                 // TODO: validate that the char is actually a valid char to start charData
                 m_parsingModeStack.push_back(ParsingMode::characterData);
+                previous = current;
             }
             break;
 
         case ParsingMode::characterData:
             while (current < end)
             {
-                if (*current == '<')
+                if (*current == '\r')
                 {
-                    // TODO
+                    // TODO: this is not good enough as we need to replace it with '\n' if there is no '\n' following
+                    m_fragmentedData.append(previous, current - previous);
+                    previous = (current + 1);
+                }
+                else if (*current == '<')
+                {
+                    if (m_fragmentedData.empty() && ((current - previous) > 0))
+                    {
+                        m_callbacks.onCharacterData(boost::string_view(previous, (current - previous)));
+                    }
+                    else
+                    {
+                        m_fragmentedData.append(previous, current - previous);
+                        m_callbacks.onCharacterData(m_fragmentedData);
+                        m_fragmentedData.clear();
+                    }
                     break;
                 }
                 ++current;
@@ -163,8 +184,15 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
                     || ((*current >= '0') && (*current <= '9')));
                 if (!isNameChar)
                 {
-                    // TODO: partial
-                    m_callbacks.onStartTag();
+                    if (m_fragmentedData.empty() && ((current - previous) > 0))
+                    {
+                        // TODO: we could be in something else than a start tag!
+                        m_callbacks.onStartTag(boost::string_view(previous, (current - previous)));
+                    }
+                    else
+                    {
+                        // TODO
+                    }
                     break;
                 }
                 ++current;
@@ -181,7 +209,6 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
 
         case ParsingMode::forwardSlash:
             // TODO: cope with something else than "/>"
-            ++current;
             // TODO: check current state and don't assume this is a closing "/>"
             m_parsingModeStack.pop_back();
             m_parsingModeStack.back() = ParsingMode::endTag;
