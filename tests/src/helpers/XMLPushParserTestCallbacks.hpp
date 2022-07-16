@@ -19,6 +19,7 @@ public:
     void onXMLDeclaration() override;
     void onStartTag(boost::string_view name) override;
     void onEndTag() override;
+    void onCharacterData(boost::string_view data) override;
 
     void exportToXML(const boost::filesystem::path& path) const;
 

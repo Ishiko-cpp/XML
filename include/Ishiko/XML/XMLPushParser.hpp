@@ -25,6 +25,7 @@ public:
         virtual void onXMLDeclaration();
         virtual void onStartTag(boost::string_view name);
         virtual void onEndTag();
+        virtual void onCharacterData(boost::string_view data);
     };
 
     XMLPushParser(Callbacks& callbacks);

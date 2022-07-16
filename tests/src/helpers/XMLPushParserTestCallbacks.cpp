@@ -5,8 +5,11 @@
 */
 
 #include "XMLPushParserTestCallbacks.hpp"
+#include "Ishiko/XML/XMLEscapedString.hpp"
 #include "Ishiko/XML/XMLWriter.hpp"
 #include <Ishiko/Errors.hpp>
+
+using namespace Ishiko;
 
 void XMLPushParserTestCallbacks::onXMLDeclaration()
 {
@@ -23,11 +26,16 @@ void XMLPushParserTestCallbacks::onEndTag()
     m_events.emplace_back("onEndTag", "");
 }
 
+void XMLPushParserTestCallbacks::onCharacterData(boost::string_view data)
+{
+    m_events.emplace_back("onCharacterData", data);
+}
+
 void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path) const
 {
-    Ishiko::XMLWriter xmlWriter;
+    XMLWriter xmlWriter;
     // TODO: handle errors
-    Ishiko::Error error;
+    Error error;
     xmlWriter.create(path, error);
     xmlWriter.writeXMLDeclaration();
     xmlWriter.writeElementStart("events");
@@ -47,7 +55,9 @@ void XMLPushParserTestCallbacks::exportToXML(const boost::filesystem::path& path
         {
             xmlWriter.writeNewlineAndIndentation();
             xmlWriter.writeElementStart("argument");
-            xmlWriter.writeText(e.second);
+            // Escape a few extra characters that are annoying to show in the logs
+            XMLEscapedString escapedArgument = XMLEscapedString::FromUnescapedString(e.second.c_str(), "\r\n");
+            xmlWriter.writeText(escapedArgument);
             xmlWriter.writeElementEnd();
         }
 
