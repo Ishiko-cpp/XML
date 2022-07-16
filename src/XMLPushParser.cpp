@@ -23,7 +23,7 @@ void XMLPushParser::Callbacks::onEndTag()
 XMLPushParser::XMLPushParser(Callbacks& callbacks)
     : m_callbacks(callbacks)
 {
-    m_parsingModeStack.push_back(ParsingMode::xmlDeclaration);
+    m_parsingModeStack.push_back(ParsingMode::document);
 }
 
 bool XMLPushParser::onData(boost::string_view data, bool eod)
@@ -37,6 +37,14 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
     {
         switch (m_parsingModeStack.back())
         {
+        case ParsingMode::document:
+            m_parsingModeStack.push_back(ParsingMode::prolog);
+            break;
+
+        case ParsingMode::prolog:
+            m_parsingModeStack.push_back(ParsingMode::xmlDeclaration);
+            break;
+
         case ParsingMode::xmlDeclaration:
             // TODO: cope with no XML decl
             while (current < end)
@@ -59,14 +67,39 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
             }
             break;
 
+        case ParsingMode::element:
+            m_parsingModeStack.push_back(ParsingMode::startTag);
+            break;
+
         case ParsingMode::startTag:
+            m_parsingModeStack.push_back(ParsingMode::name);
+            break;
+
+        case ParsingMode::content:
+            // TODO: we dont't cope with content yet
+            m_parsingModeStack.back() = ParsingMode::endTag;
+            break;
+
+        case ParsingMode::endTag:
+            m_callbacks.onEndTag();
+            // TODO: what do I transition to?
+            m_parsingModeStack.back() = ParsingMode::end;
+            break;
+
+        case ParsingMode::leftAngleBracket:
+            // TODO: handle other stuff that starts with '<'
+            m_parsingModeStack.back() = ParsingMode::element;
+            break;
+
+        case ParsingMode::name:
             while (current < end)
             {
-                if (*current == '>')
+                // TODO: fix isNameChar
+                bool isNameChar = ((*current >= 'a') && (*current <= 'z'));
+                if (!isNameChar)
                 {
-                    // TODO
+                    // TODO: partial
                     m_callbacks.onStartTag();
-                    m_callbacks.onEndTag();
                     break;
                 }
                 ++current;
@@ -77,9 +110,16 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
             }
             else
             {
-                ++current;
-                m_parsingModeStack.back() = ParsingMode::end;
+                m_parsingModeStack.back() = ParsingMode::whitespace;
             }
+            break;
+
+        case ParsingMode::forwardSlash:
+            // TODO: cope with something else than "/>"
+            ++current;
+            // TODO: check current state and don't assume this is a closing "/>"
+            m_parsingModeStack.pop_back();
+            m_parsingModeStack.back() = ParsingMode::endTag;
             break;
 
         case ParsingMode::whitespace:
@@ -109,7 +149,38 @@ bool XMLPushParser::onData(boost::string_view data, bool eod)
             }
             else
             {
-                m_parsingModeStack.back() = ParsingMode::startTag;
+                m_parsingModeStack.pop_back();
+                // TODO: assert there is an element at back
+                if (m_parsingModeStack.back() == ParsingMode::prolog)
+                {
+                    // TODO : verify state, cope with additional stuff in the prolog
+                    m_parsingModeStack.pop_back();
+                    // TODO: this is a hack as it could be any character, need a specific "unknown stuff" state
+                    m_parsingModeStack.back() = ParsingMode::leftAngleBracket;
+                    ++current;
+                }
+                else if (m_parsingModeStack.back() == ParsingMode::startTag)
+                {
+                    // TODO: we need to cope with attributes
+                    if (*current == '>')
+                    {
+                        m_parsingModeStack.back() == ParsingMode::content;
+                        ++current;
+                    }
+                    else if (*current == '/')
+                    {
+                        m_parsingModeStack.push_back(ParsingMode::forwardSlash);
+                        ++current;
+                    }
+                    else
+                    {
+                        // TODO: error
+                    }
+                }
+                else
+                {
+                    // TODO
+                }
             }
             break;
 
