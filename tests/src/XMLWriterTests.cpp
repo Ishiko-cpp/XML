@@ -25,6 +25,7 @@ XMLWriterTests::XMLWriterTests(const TestNumber& number, const TestContext& cont
     append<HeapAllocationErrorsTest>("writeElementStart test 7", WriteElementStartTest7);
     append<HeapAllocationErrorsTest>("writeAttribute test 1", WriteAttributeTest1);
     append<HeapAllocationErrorsTest>("writeAttribute test 2", WriteAttributeTest2);
+    append<HeapAllocationErrorsTest>("writeAttribute test 3", WriteAttributeTest3);
 }
 
 void XMLWriterTests::ConstructorTest1(Test& test)
@@ -281,5 +282,28 @@ void XMLWriterTests::WriteAttributeTest2(Test& test)
     writer.close();
 
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteAttributeTest2.xml");
+    ISHIKO_TEST_PASS();
+}
+
+void XMLWriterTests::WriteAttributeTest3(Test& test)
+{
+    boost::filesystem::path outputPath = test.context().getOutputPath("XMLWriterTests_WriteAttributeTest3.xml");
+
+    XMLWriter writer;
+
+    Error error;
+    writer.create(outputPath, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
+    writer.writeXMLDeclaration();
+    writer.writeElementStart("book");
+    writer.writeAttribute("title", "\"War of The Worlds\"");
+    writer.writeText("A book by H.G. Wells");
+    writer.writeElementEnd();
+
+    writer.close();
+
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("XMLWriterTests_WriteAttributeTest3.xml");
     ISHIKO_TEST_PASS();
 }

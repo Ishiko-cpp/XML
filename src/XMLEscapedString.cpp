@@ -21,12 +21,20 @@ XMLEscapedString XMLEscapedString::FromUnescapedString(const char* str)
             result.m_escapedString.append("&amp;");
             break;
 
+        case '\'':
+            result.m_escapedString.append("&apos;");
+            break;
+
         case '<':
             result.m_escapedString.append("&lt;");
             break;
 
         case '>':
             result.m_escapedString.append("&gt;");
+            break;
+
+        case '\"':
+            result.m_escapedString.append("&quot;");
             break;
 
         default:
@@ -56,12 +64,20 @@ XMLEscapedString XMLEscapedString::FromUnescapedString(const char* str, const ch
             result.m_escapedString.append("&amp;");
             break;
 
+        case '\'':
+            result.m_escapedString.append("&apos;");
+            break;
+
         case '<':
             result.m_escapedString.append("&lt;");
             break;
 
         case '>':
             result.m_escapedString.append("&gt;");
+            break;
+
+        case '\"':
+            result.m_escapedString.append("&quot;");
             break;
 
         default:
@@ -126,6 +142,10 @@ std::string XMLEscapedString::toUnescapedString() const
                 {
                     result.push_back('&');
                 }
+                else if (std::equal((it + 1), it2, "apos"))
+                {
+                    result.push_back('\'');
+                }
                 else if (std::equal((it + 1), it2, "lt"))
                 {
                     result.push_back('<');
@@ -133,6 +153,10 @@ std::string XMLEscapedString::toUnescapedString() const
                 else if (std::equal((it + 1), it2, "gt"))
                 {
                     result.push_back('>');
+                }
+                else if (std::equal((it + 1), it2, "quot"))
+                {
+                    result.push_back('\"');
                 }
                 else
                 {
