@@ -37,8 +37,9 @@ endif
 # Additionally, this makefile is customizable with the following
 # settings:
 #
-#      ISHIKO_CPP_ERRORS_ROOT        Path to the Ishiko Errors installation
 #      ISHIKO_CPP_BASEPLATFORM_ROOT  Path to the Ishiko BasePlatform installation
+#      ISHIKO_CPP_ERRORS_ROOT        Path to the Ishiko Errors installation
+#      ISHIKO_CPP_IO_ROOT            Path to the Ishiko/C++ IO installation
 #      ISHIKO_CPP_BOOST_ROOT         Path to the Boost installation
 #      ISHIKO_CPP_FILESYSTEM_ROOT    Path to the Ishiko FileSystem installation
 #      ISHIKO_CPP_PUGIXML_ROOT       Path to the pugixml installation
@@ -68,10 +69,12 @@ endif
 # Configurable settings:
 # 
 
-# Path to the Ishiko Errors installation
-ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/errors
 # Path to the Ishiko BasePlatform installation
 ISHIKO_CPP_BASEPLATFORM_ROOT ?= $(ISHIKO_CPP)/base-platform
+# Path to the Ishiko Errors installation
+ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/errors
+# Path to the Ishiko/C++ IO installation
+ISHIKO_CPP_IO_ROOT ?= $(ISHIKO_CPP)/io
 # Path to the Boost installation
 ISHIKO_CPP_BOOST_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_BOOST)
 # Path to the Ishiko FileSystem installation
@@ -88,13 +91,13 @@ all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoXML-d,Is
 	$(RANLIB) $@
 
 $(_builddir)IshikoXML_XMLEscapedString.o: ../../src/XMLEscapedString.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLEscapedString.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_IO_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLEscapedString.cpp
 
 $(_builddir)IshikoXML_XMLPushParser.o: ../../src/XMLPushParser.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLPushParser.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_IO_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLPushParser.cpp
 
 $(_builddir)IshikoXML_XMLWriter.o: ../../src/XMLWriter.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLWriter.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -DPUGIXML_HEADER_ONLY -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_IO_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_PUGIXML_ROOT)/src -I../../include/Ishiko/XML -std=c++11 ../../src/XMLWriter.cpp
 
 clean:
 	rm -f $(_builddir)*.o
