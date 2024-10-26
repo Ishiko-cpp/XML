@@ -26,7 +26,7 @@ jobs:
           path: /workspace/projects/ishiko/cpp/xml
       - run:
           name: Build
-          command: cd /workspace/projects/ishiko/cpp/xml/build/gnumake && make
+          command: cd /workspace/projects/ishiko/cpp/xml/build-files/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ Types"
           command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/types.git && cd types/build-files/gnumake && make
@@ -53,10 +53,10 @@ jobs:
           command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/test-framework.git && cd test-framework/core/build-files/gnumake && make
       - run:
           name: Test build
-          command: cd /workspace/projects/ishiko/cpp/xml/tests/build/gnumake && make
+          command: cd /workspace/projects/ishiko/cpp/xml/tests/build-files/gnumake && make
       - run:
           name: Run the tests
-          command: cd /workspace/projects/ishiko/cpp/xml/tests/build/gnumake && ./IshikoXMLTests --persistent-storage=/build/test-output --junit-xml-test-report=/build/test-results/IshikoXML.xml
+          command: cd /workspace/projects/ishiko/cpp/xml/tests/build-files/gnumake && ./IshikoXMLTests --persistent-storage=/build/test-output --junit-xml-test-report=/build/test-results/IshikoXML.xml
       - store_artifacts:
           name: Upload test output files
           path: /build/test-output
